@@ -1,0 +1,65 @@
+.content{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.welcome{
+    font-size: 24px;
+    font-weight: 600;
+    font-family: Inter;
+}
+.username{
+    font-size:38px;
+    font-weight: 300;
+    font-family: Inter;
+}
+.lh-1{
+    line-height: 1;
+}
+.dashboard-text{
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 600;
+    color: rgba(40, 89, 81, 1);
+}
+.card-detail{
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.19);
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    padding: 10px 8px;
+}
+.card-no{
+    font-size: 27px;
+    font-weight: 600;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+.card-text{
+    font-size: 13px;
+    font-weight: 600;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+.center-part{
+   margin-top: 100px;
+}
+.job-order-text{
+    font-size: 19px;
+    font-weight: 600;
+    font-family: Inter;
+    color: rgba(40, 89, 81, 1);
+}
+.card-progress-jo{
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.19);
+    background-color: rgba(255, 255, 255, 1);
+    padding: 10px 15px;
+}
+.bottom-part{
+    margin-top: 50px;
+}
+
+
