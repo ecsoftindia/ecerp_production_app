@@ -1,0 +1,7 @@
+{
+  "name": "ecerp_production_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
