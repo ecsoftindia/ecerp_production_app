@@ -1,0 +1,130 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="content">
+    <div class="content-head d-flex align-items-center">
+      <img src="assets/arrow-left.png" (click)="goBack()">
+      <div class="fs-20-600 ms-4">Job Order in Detailed</div>
+    </div>
+    <div class="content-sec">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="fs-14-300">Id: #2563147</div>
+        <div class="fs-14-300">Dt: 02-09-2025</div>
+        <div class="fs-14-300">ETC: 03-09-2025</div>
+      </div>
+      <div class="mt-2 d-flex align-items-center">
+        <div>
+          <div class="fs-16-500">Job Order Title</div>
+          <div class="fs-13-400">Description Content</div>
+        </div>
+        <div class="d-flex align-items-center ms-5">
+          <div>
+            <div class="fs-13-400">T.Qty</div>
+            <div class="fs-16-500">50</div>
+          </div>
+          <div class="ms-3">
+            <div class="fs-13-400">C.Qty</div>
+            <div class="fs-16-500">20</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center ms-auto me-2">
+          <img src="assets/pause.png" class="me-4">
+          <img src="assets/hold.png">
+        </div>
+      </div>
+      <div class="mt-2 d-flex align-items-center">
+        <div class="blue-btn">In-Progress</div>
+        <div class="blue-btn ms-3">On-time</div>
+        <div class="menu-btn ms-auto" mat-button [matMenuTriggerFor]="menu">
+          Menu
+        </div>
+        <mat-menu #menu="matMenu">
+          <div mat-menu-item>Add Status</div>
+          <div mat-menu-item>Add Machines</div>
+          <div mat-menu-item>Add Requests</div>
+          <div mat-menu-item>Add Members</div>
+          <div mat-menu-item>Add Tasks</div>
+          <div mat-menu-item>Generate Report</div>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="border-btm mt-2"></div>
+    <div class="tab-sec mt-2">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Status">
+          <div class="card card-tab mx-2">
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="profile-container">
+                <img src="assets/user.png">
+              </div>
+              <div class="ms-3">
+                <div class="fs-12-400">02-09-2025 @ 11:30 am | Updated by user name</div>
+                <div class="fs-16-500">Initiated</div>
+              </div>
+            </div>
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="profile-container">
+                <img src="assets/user.png">
+              </div>
+              <div class="ms-3">
+                <div class="fs-12-400">02-09-2025 @ 11:30 am | Updated by user name</div>
+                <div class="fs-16-500">Initiated</div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Machines">
+          <div class="card card-tab mx-2">
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="machines-profile"></div>
+              <div class="ms-3">
+                <div class="fs-12-400">Id: #36521747 &nbsp; | &nbsp;Incharge: <span class="fs-12-700">user name</span>
+                </div>
+                <div class="fs-16-500">Machine name</div>
+              </div>
+            </div>
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="machines-profile"></div>
+              <div class="ms-3">
+                <div class="fs-12-400">Id: #36521747 &nbsp; | &nbsp;Incharge: <span class="fs-12-700">user name</span>
+                </div>
+                <div class="fs-16-500">Machine name</div>
+              </div>
+            </div>
+
+          </div>
+        </mat-tab>
+        <mat-tab label="Request">
+          <div class="card card-tab mx-2">
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="">
+                <div class="fs-12-400">Id: #36521747 &nbsp; | &nbsp;Raised by: <span class="fs-12-700">user name</span>
+                </div>
+                <div class="fs-16-500">Request Content</div>
+              </div>
+              <div class="blue-btn ms-auto">
+                In-Progress
+              </div>
+            </div>
+            <div class="sec-1-tab d-flex align-items-center">
+              <div class="">
+                <div class="fs-12-400">Id: #36521747 &nbsp; | &nbsp;Raised by: <span class="fs-12-700">user name</span>
+                </div>
+                <div class="fs-16-500">Request Content</div>
+              </div>
+              <div class="blue-btn ms-auto">
+                 Completed
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Members">Members</mat-tab>
+        <mat-tab label="Tasks">Tasks</mat-tab>
+      </mat-tab-group>
+
+    </div>
+  </div>
+
+</ion-content>
+<app-footer class="m-2"></app-footer>

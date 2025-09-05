@@ -15,7 +15,7 @@
     font-family: Inter;
 }
 .lh-1{
-    line-height: 1;
+    line-height: 1.4 !important;
 }
 .dashboard-text{
     font-size: 24px;
@@ -29,7 +29,7 @@
     background-color: rgba(255, 255, 255, 1);
     display: flex;
     align-items: center;
-    padding: 10px 8px;
+    padding: 15px 8px;
 }
 .card-no{
     font-size: 27px;
@@ -61,5 +61,24 @@
 .bottom-part{
     margin-top: 50px;
 }
+
+ion-content{
+    --background: transparent !important;
+  position: relative;
+  overflow: hidden; // prevents scrollbars from the curve
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%; 
+    background: linear-gradient(323deg, #d8f0f4, #ffffff);  //135deg
+    clip-path: ellipse(150% 100% at -42% 0%); 
+    z-index: -1;
+  }
+    
+  }
 
 

@@ -11,7 +11,11 @@ const routes: Routes = [
     path: '***',
     redirectTo: '/home/dashboard',
     pathMatch: 'full'
+  },  {
+    path: 'login',
+    loadChildren: () => import('./start/login/login.module').then( m => m.LoginPageModule)
   },
+
 ];
 
 @NgModule({

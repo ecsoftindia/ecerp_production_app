@@ -3,11 +3,11 @@
 <ion-content [fullscreen]="true">
    <div class="content">
       <div class="content-head d-flex align-items-center">
-         <img src="assets/arrow-left.png" (click)="goToDashboard()">
+         <img src="assets/arrow-left.png" (click)="goBack()">
          <div class="fs-20-600 ms-4">In-Progress Job Orders</div>
       </div>
       <div class="content-body mt-3">
-          <div class="card card-progress-jo mb-2">
+          <div class="card card-progress-jo mb-2" (click)="goToJobOrderdetailed()">
             <div class="d-flex align-items-center">
               <div class="fs-14-300">Id: #2563147</div>
               <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>

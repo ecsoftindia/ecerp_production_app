@@ -1,12 +1,19 @@
-.content{
+.content-head{
     padding: 15px 15px;
 }
-.card-progress-jo{
-    border-radius: 7px;
-    border: 1px solid rgba(0, 0, 0, 0.19);
-    background-color: rgba(255, 255, 255, 1);
-    padding: 10px 15px;
+.content-body{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
 }
+.profile-container{
+    height: 120px;
+    width: 120px;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 50%;
+}
+
 
 ion-content{
     --background: transparent !important;

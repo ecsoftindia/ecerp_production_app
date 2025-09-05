@@ -1,3 +1,38 @@
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+}
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -41,7 +76,7 @@
 
 
 :root {
-    --ion-color-primary: #2D6466;
+    --ion-color-primary: rgba(45, 100, 102, 1);
     --ion-color-primary-rgb: 0, 0, 0;
     --ion-color-primary-contrast: #ffffff;
     --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -49,7 +84,7 @@
     --ion-color-primary-tint: #1a1a1a;
 
 
-    --ion-color-secondary: #9ED8DABF;
+    --ion-color-secondary: rgba(158, 216, 218, 0.35);
 	--ion-color-secondary-rgb: 216,218,191;
 	--ion-color-secondary-contrast: #000000;
 	--ion-color-secondary-contrast-rgb: 0,0,0;
@@ -61,21 +96,62 @@
 
 //global css
 
+.fs-12-400{
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+.fs-12-700{
+    font-size: 12px;
+    font-weight: 700;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+.fs-13-400{
+    font-size: 13px;
+    font-weight: 400;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+
 .fs-14-300{
     font-family: Inter;
     font-weight: 300;
     font-size: 14px;
+    color: rgba(0, 0, 0, 1);
+}
+.fs-15-500{
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
 }
 .fs-16-400{
     font-family: Inter;
     font-weight: 400;
     font-size: 16px;
+    color: rgba(0, 0, 0, 1);
+}
+.fs-16-500{
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 1);
 }
 .fs-20-600{
     font-size: 20px;
     font-weight: 600;
     font-family: Inter;
+    color: rgba(0, 0, 0, 1);
 }
+.fs-29-600{
+    font-size: 29px;
+    font-weight: 600;
+    font-family: Inter;
+    color: rgba(0, 0, 0, 1);
+}
+
 .blue-btn{
     font-size: 14px;
     font-weight: 500;
@@ -84,8 +160,8 @@
     border-radius: 4px;
     border: 1px solid rgba(74, 179, 161, 1);
     background-color:rgba(74, 179, 161, 0.35);
-    // display: flex;
-    // align-items: center;
+    display: flex;
+    align-items: center;
     padding: 0 10px;
 }
 .violet-btn{
@@ -96,8 +172,8 @@
     border-radius: 4px;
     border: 1px solid rgba(74, 107, 179, 1);
     background-color:rgba(74, 107, 179, 0.35);
-    // display: flex;
-    // align-items: center;
+    display: flex;
+    align-items: center;
     padding: 0 10px;
 }
 .waiting-btn{
@@ -108,7 +184,25 @@
     border-radius: 4px;
     border: 1px solid rgba(243, 143, 72, 1);
     background-color:rgba(243, 143, 72, 0.35);
-    // display: flex;
-    // align-items: center;
+    display: flex;
+    align-items: center;
     padding: 0 10px;
 }
+.menu-btn{
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Inter;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid rgba(45, 100, 102, 0.75);
+    background-color:rgba(45, 100, 102, 1);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: rgba(255, 255, 255, 1);
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Inter,  }

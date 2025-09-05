@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="content">
+        <div class="text-center">
+           <img src="assets/Group 1.png">
+        </div>
+        <div class="login-container">
+            <div class="fs-29-600 text-center">Login</div>
+            <div class="input-grp">
+              <div class="d-flex flex-column">
+                <label class="fs-15-500 mb-1">User Name</label>
+                <input type="text" class="login-input">
+              </div>
+              <div class="d-flex flex-column mt-4">
+                <label class="fs-15-500 mb-1">Password</label>
+                <input type="text" class="login-input">
+              </div>
+            </div>
+            
+            <div class="login-btn" (click)="goToMachine()">
+               Authorize Me!
+            </div>
+            <div class="login-ftr-text text-center">
+              Can’t Remember my access ?
+            </div>
+        </div> 
+    </div>
+</ion-content>
