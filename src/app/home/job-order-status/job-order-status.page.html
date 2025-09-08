@@ -1,0 +1,158 @@
+<ion-header>
+  <app-header></app-header>
+  <div class="content-head d-flex align-items-center">
+    <img src="assets/arrow-left.png" (click)="goBack()">
+    <div class="fs-20-600 ms-4">Job Order Status</div>
+  </div>
+  <div class="content-sec">
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="fs-14-300">Id: #2563147</div>
+      <div class="fs-14-300">Dt: 02-09-2025</div>
+      <div class="fs-14-300">ETC: 03-09-2025</div>
+    </div>
+    <div class="mt-2 d-flex align-items-center">
+      <div>
+        <div class="fs-16-500">Job Order Title</div>
+        <div class="fs-13-400">Description Content</div>
+      </div>
+      <div class="d-flex align-items-center ms-5">
+
+        <div class="ms-3">
+          <div class="fs-13-400">Qty</div>
+          <div class="fs-16-500">20</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content">
+  
+    <div class="border-btm mt-2"></div>
+    <div class="content-sec">
+      <div class="job-order-text mb-3">
+        Process List
+      </div>
+
+
+     
+    
+        <!-- Card 1 -->
+        <div (click)="goToJobOrderdetailed()" class="process-card">
+          <div class="card-header">
+            <div class="process-icon">
+              <ion-icon name="cog-outline"></ion-icon>
+            </div>
+            <div class="process-info">
+              <h2>Process Name</h2>
+              <p class="time">12:15 PM</p>
+            </div>
+            <div class="status-badge open">Open</div>
+          </div>
+      
+          <div class="card-body">
+            <div class="info-cards">
+              <div class="info-box">
+                <ion-icon name="hardware-chip-outline"></ion-icon>
+                <div>
+                  <span class="label">Machine</span>
+                  <strong>A1</strong>
+                </div>
+              </div>
+              <div class="info-box">
+                <ion-icon name="person-outline"></ion-icon>
+                <div>
+                  <span class="label">Operator</span>
+                  <strong>John Doe</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Card 2 -->
+        <div (click)="goToJobOrderdetailed()" class="process-card">
+          <div class="card-header">
+            <div class="process-icon">
+              <ion-icon name="cog-outline"></ion-icon>
+            </div>
+            <div class="process-info">
+              <h2>Process Name</h2>
+              <p class="time">2:40 PM</p>
+            </div>
+          </div>
+      
+          <div class="card-footer">
+            <span class="tag inprocess">In-Process</span>
+            <span class="tag inspection">Inspection</span>
+            <span class="tag rework">Rework</span>
+          </div>
+        </div>
+    
+      
+         <!-- Card 1 -->
+         <div (click)="goToJobOrderdetailed()" class="process-card">
+          <div class="card-header">
+            <div class="process-icon">
+              <ion-icon name="cog-outline"></ion-icon>
+            </div>
+            <div class="process-info">
+              <h2>Process Name</h2>
+              <p class="time">2:40 PM</p>
+            </div>
+          </div>
+      
+          <div class="card-footer">
+            <span class="tag inprocess">In-Process</span>
+            <span class="tag inspection">Inspection</span>
+            <span class="tag rework">Rework</span>
+          </div>
+        </div>
+      
+        <!-- Card 2 -->
+        
+
+        <div (click)="goToJobOrderdetailed()" class="process-card">
+          <div class="card-header">
+            <div class="process-icon">
+              <ion-icon name="cog-outline"></ion-icon>
+            </div>
+            <div class="process-info">
+              <h2>Process Name</h2>
+              <p class="time">12:15 PM</p>
+            </div>
+            <div class="status-badge open">Open</div>
+          </div>
+      
+          <div class="card-body">
+            <div class="info-cards">
+              <div class="info-box">
+                <ion-icon name="hardware-chip-outline"></ion-icon>
+                <div>
+                  <span class="label">Machine</span>
+                  <strong>A1</strong>
+                </div>
+              </div>
+              <div class="info-box">
+                <ion-icon name="person-outline"></ion-icon>
+                <div>
+                  <span class="label">Operator</span>
+                  <strong>John Doe</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+      
+   
+      
+
+    </div>
+  </div>
+
+</ion-content>
+<app-footer class="m-2"></app-footer>

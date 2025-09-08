@@ -23,7 +23,7 @@ export class InprogressJobOrdersPage implements OnInit {
   }
 
   goToJobOrderdetailed(){
-     this.router.navigate(['/home/job-order-detailed'])
+     this.router.navigate(['/home/job-order-status'])
   }
 
   goBack(){

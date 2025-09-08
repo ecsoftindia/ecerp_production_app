@@ -1,0 +1,114 @@
+<ion-header>
+  <app-header></app-header>
+  <div class="content-head d-flex align-items-center">
+    <img src="assets/arrow-left.png" (click)="goBack()">
+    <div class="fs-20-600 ms-4">Job Order Status Completed</div>
+  </div>
+  <div class="">
+
+
+
+  </div>
+</ion-header>
+
+
+
+
+
+ <ion-content [fullscreen]="true">
+  <div class="content p-0 detailed-view">
+
+
+    <ion-card class="details-card">
+      <ion-card-header>
+        <div class="d-flex align-items-center">
+          <div class="card-title">Drilling</div>
+          <div class="ms-auto d-flex align-items-center">
+            <ion-badge >Open</ion-badge>
+          </div>
+        </div>
+        
+        
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" class="info-col">
+              <div class="info-label">Job Order No</div>
+              <div class="info-value">11_JOBE1042526</div>
+            </ion-col>
+            <ion-col size="6" class="info-col right-align">
+              <div class="info-label">Date</div>
+              <div class="info-value">22 Aug 2025</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="info-col">
+              <div class="info-label">Product Name</div>
+              <div class="info-value">10 MM steel hand propesed</div>
+            </ion-col>
+            <ion-col size="6" class="info-col right-align">
+              <div class="info-label">Product ID</div>
+              <div class="info-value">43898394</div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6" class="info-col">
+              <div class="info-label">Machine</div>
+              <div class="info-value">Machine 01</div>
+            </ion-col>
+            <ion-col size="6" class="info-col right-align">
+              <div class="info-label">Operator</div>
+              <div class="info-value"> operator09 </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="info-col">
+              <div class="info-label">Qty</div>
+              <ion-badge color="primary" class="qty-badge">120</ion-badge>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  
+
+    <ion-card class="running-section">
+      <ion-card-header>
+        <div class="running-title">Running Section</div>
+        <div class="start-time-label">Start Time: 22 : 00</div>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="running-details">
+          <p>Process is currently running... Monitor progress below.</p>
+    
+        </div>
+      </ion-card-content>
+    </ion-card>
+  
+  </div>
+  
+
+  <div class="footer-buttons">
+    <ion-button expand="block"  color="warning">
+      <ion-icon name="pause-circle-outline" slot="start"></ion-icon>
+      Pause
+    </ion-button>
+  
+    <ion-button expand="block" color="success">
+      <ion-icon name="checkmark-done-circle-outline" slot="start"></ion-icon>
+      Complete
+    </ion-button>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+</ion-content> 
+
+
+<app-footer class="m-2"></app-footer>

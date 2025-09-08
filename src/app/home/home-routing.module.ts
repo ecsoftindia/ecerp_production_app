@@ -12,7 +12,8 @@ const routes: Routes = [
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
       },
     ]
-  },  {
+  },
+  {
     path: 'inprogress-job-orders',
     loadChildren: () => import('./inprogress-job-orders/inprogress-job-orders.module').then( m => m.InprogressJobOrdersPageModule)
   },
@@ -27,7 +28,19 @@ const routes: Routes = [
   {
     path: 'select-machine',
     loadChildren: () => import('./select-machine/select-machine.module').then( m => m.SelectMachinePageModule)
-  }
+  },
+  {
+    path: 'job-order-status',
+    loadChildren: () => import('./job-order-status/job-order-status.module').then( m => m.JobOrderStatusPageModule)
+  },
+  {
+    path: 'job-order-status-detail',
+    loadChildren: () => import('./job-order-status/job-order-status-detail/job-order-status-detail.module').then( m => m.JobOrderStatusDetailPageModule)
+  },
+  {
+    path: 'job-order-status-completed',
+    loadChildren: () => import('./job-order-status/job-order-status-completed/job-order-status-completed.module').then( m => m.JobOrderStatusCompletedPageModule)
+  },
 
 
 

@@ -1,0 +1,154 @@
+.content-head{
+    padding: 15px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+    background-color: #ffffff;
+}
+.content-sec{
+    padding: 10px 15px;
+    background: #FFFFFF;
+}
+.border-btm{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.19);
+}
+
+.job-order-text{
+    font-size: 19px;
+    font-weight: 600;
+    font-family: Inter;
+    color: rgb(40, 89, 81);
+}
+
+
+//new
+
+.process-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 9px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #dedede;
+  
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+  
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      .process-icon {
+        background: linear-gradient(135deg, #6c63ff, #009dff);
+        color: #fff;
+        padding: 10px;
+        border-radius: 14px;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .process-info {
+        flex: 1;
+        margin-left: 12px;
+  
+        h2 {
+          font-size: 16px;
+          font-weight: 500;
+          margin: 0;
+          color: #2d2d2d;
+        }
+  
+        .time {
+          font-size: 13px;
+          color: #6c757d;
+          margin: 3px 0 0 0;
+        }
+      }
+  
+      .status-badge {
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+  
+        &.open {
+          background: #e0f7ff;
+          color: #008cff;
+        }
+      }
+    }
+  
+    .card-body {
+      margin-top: 16px;
+  
+      .info-cards {
+        display: flex;
+        gap: 12px;
+  
+        .info-box {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          background: #f8faff;
+          border-radius: 14px;
+          padding: 10px 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+          transition: 0.2s;
+          border: 1px solid #dedede;
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+          }
+  
+          ion-icon {
+            font-size: 22px;
+            color: #009dff;
+            margin-right: 10px;
+          }
+  
+          .label {
+            display: block;
+            font-size: 12px;
+            color: #6c757d;
+          }
+  
+          strong {
+            font-size: 14px;
+            color: #222;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  
+    .card-footer {
+      margin-top: 14px;
+  
+      .tag {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-right: 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+  
+        &.inprocess {
+          background: #ffb703;
+        }
+  
+        &.inspection {
+          background: #6a4c93;
+        }
+  
+        &.rework {
+          background: #ef233c;
+        }
+      }
+    }
+}

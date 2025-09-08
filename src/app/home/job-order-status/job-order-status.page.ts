@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-job-order-detailed',
-  templateUrl: './job-order-detailed.page.html',
-  styleUrls: ['./job-order-detailed.page.scss'],
+  selector: 'app-job-order-status',
+  templateUrl: './job-order-status.page.html',
+  styleUrls: ['./job-order-status.page.scss'],
   standalone:false
 })
-export class JobOrderDetailedPage implements OnInit {
+export class JobOrderStatusPage implements OnInit {
 
   constructor(
     public location:Location,
@@ -22,7 +21,9 @@ export class JobOrderDetailedPage implements OnInit {
     this.location.back()
   }
 
+
   goToJobOrderdetailed(){
-    this.router.navigate(['/home/job-order-status'])
+    this.router.navigate(['/home/job-order-status-detail'])
  }
+ 
 }
