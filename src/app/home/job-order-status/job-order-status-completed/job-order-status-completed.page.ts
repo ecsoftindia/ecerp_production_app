@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-job-order-status-completed',
   templateUrl: './job-order-status-completed.page.html',
@@ -22,6 +23,7 @@ export class JobOrderStatusCompletedPage implements OnInit {
   constructor(
     public location:Location,
     private router:Router,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,34 @@ export class JobOrderStatusCompletedPage implements OnInit {
 
   goBack(){
     this.location.back()
+  }
+
+  async openQtyPopup() {
+    const alert = await this.alertCtrl.create({
+      header: 'Enter Quantity',
+      inputs: [
+        {
+          name: 'qty',
+          type: 'number',
+          placeholder: 'Enter qty',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Submit',
+          handler: (data:any) => {
+            console.log('Submitted Qty:', data.qty);
+            // 👉 Here you can call your API or save qty
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
 }
