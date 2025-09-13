@@ -1,0 +1,115 @@
+<div class="form-group relative" *ngIf="!multiple">
+  <ng-container *ngIf="label !== ''">
+      <div class="d-flex align-items-center">
+          <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+          </label>
+          <div class="ms-auto d-flex align-items-center">
+              <div class="mandatory-text" *ngIf="control?.control?.invalid && errorTrueNow">
+                  {{control && control.control && control.control.errors | appFormError: errorText}}
+              </div>
+          </div>
+      </div>
+  </ng-container>
+
+  <div class="select-container">
+
+      <mat-select class="form-control pad-adj pr-1 no-placeholder" [(ngModel)]="value"
+          [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" [autofocus]="autofocus"
+          [disabled]="btnClickedNow" name="name" (selectionChange)="doChange($event)" (blur)="doBlur()"
+          (focus)="doFocus()" (keydown)="checkEnter($event)" #forminput [id]="name">
+          <!-- <ng-container *ngIf="search">
+              <mat-option>
+                  <ngx-mat-select-search [noEntriesFoundLabel]="'No Data Found'" [placeholderLabel]="placeholderLabel"
+                      [(ngModel)]="searchItem" [name]="'searchitem'" type="input">
+                      <div class="select-icon" ngxMatSelectSearchClear>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+                          </svg>
+                      </div>
+
+                  </ngx-mat-select-search>
+              </mat-option>
+          </ng-container> -->
+          <mat-option [value]="valuetype === 'int' ? 0: ''">Select</mat-option>
+          <mat-option *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort" [value]="item[key]">
+              {{item[keyname]}}
+          </mat-option>
+
+      </mat-select>
+
+      <ng-container *ngIf="clearIcon">
+      </ng-container>
+  </div>
+</div>
+
+
+<div class="form-group relative" *ngIf="multiple">
+  <ng-container *ngIf="label !== ''">
+      <div class="d-flex align-items-center">
+          <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+          </label>
+          <div class="ms-auto d-flex align-items-center">
+              <div class="mandatory-text" *ngIf="control?.control?.invalid && errorTrueNow">
+                  {{control && control.control && control.control.errors | appFormError: errorText}}
+              </div>
+          </div>
+      </div>
+  </ng-container>
+
+  <div class="select-container">
+      <mat-select class="form-control pad-adj pr-1" [(ngModel)]="value" [multiple]="true"
+          [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" [autofocus]="autofocus"
+          [disabled]="btnClickedNow" name="name" (selectionChange)="doChange($event)" (blur)="doBlur()"
+          (focus)="doFocus()" (keydown)="checkEnter($event)" #forminput [id]="name">
+          <ng-container *ngIf="search">
+              <mat-option>
+                  <ngx-mat-select-search [noEntriesFoundLabel]="'No Data Found'" [placeholderLabel]="placeholderLabel"
+                      [(ngModel)]="searchItem" [name]="'searchitem'" type="input">
+                      <div class="select-icon" ngxMatSelectSearchClear>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+                          </svg>
+                      </div>
+
+                  </ngx-mat-select-search>
+              </mat-option>
+          </ng-container>
+          <mat-option [ngClass]="{'custom-mat-option': customer === 'names' && types === 'detail'}"
+              *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort" [value]="item[key]">
+              {{ item[keyname] | titlecase }} <br>
+              <ng-container *ngIf="customer === 'names'">
+                  <div class="detailadrs">
+                      Balance: {{ item.totalbalance }}
+                      <span *ngIf="item.overduebalance !== '' && item.overduebalance !== 0.00">
+                          (<span class="overdue">{{ item.overduebalance }}</span>)
+                      </span>
+                  </div>
+                  <div class="detailadrs">
+                      {{item.address}}
+                  </div>
+              </ng-container>
+              <ng-container *ngIf="types === 'detail'">
+
+                  <div class="detailadrs" *ngIf="item.mobilephoneno">
+                      {{item.mobilephoneno}}
+                  </div>
+                  <div class="detailadrs" *ngIf="item.accountname">
+                      {{item.accountname}}
+                  </div>
+                  <div class="detailadrs" *ngIf="item.contactdepartment || item.contactdesignation">
+                      {{ item.contactdepartment }} | {{ item.contactdesignation }}
+                  </div>
+              </ng-container>
+            </mat-option>
+      </mat-select>
+      <ng-container *ngIf="clearIcon">
+          <div class="mat-select-icon" matSuffix *ngIf="value">
+              <mat-icon matRipple class="mt-2px s-close" name="close-outline" (click)="onClearMultiple()"
+                  aria-label="Clear">close
+              </mat-icon>
+          </div>
+      </ng-container>
+  </div>
+</div>

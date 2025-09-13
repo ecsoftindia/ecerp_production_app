@@ -1,0 +1,47 @@
+<div class="form-group" *ngIf="!login">
+    <ng-container *ngIf="label !== ''">
+        <div class="d-flex align-items-center">
+            <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+            </label>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                   {{ control && control.control && control.control.errors | appFormError: errorText }}
+
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}">
+        <ng-container *ngIf="search">
+            <div class="input-group-prepend">
+                <div class="search-btn" matRipple="!btnClickedNow" (click)="doSearch()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M456.69 421.39L362.6 327.3a173.81 173.81 0 0034.84-104.58C397.44 126.38 319.06 48 222.72 48S48 126.38 48 222.72s78.38 174.72 174.72 174.72A173.81 173.81 0 00327.3 362.6l94.09 94.09a25 25 0 0035.3-35.3zM97.92 222.72a124.8 124.8 0 11124.8 124.8 124.95 124.95 0 01-124.8-124.8z" />
+                    </svg>
+                </div>
+            </div>
+        </ng-container>
+        <input type="text" lang="und" class="form-control" autocomplete="off" appNoEmoji
+            [appUpperCase]="upperCase && !lowerCase" [appLowerCase]="lowerCase && !upperCase" [appLimit]="maxlength"
+            [autofocus]="autofocus" [disabled]="btnClickedNow" [(ngModel)]="value" name="{{name}}"
+            placeholder="{{placeholder}}" [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}"
+            (blur)="doBlur()" (focus)="doFocus()" (keydown)="checkEnter($event)" #forminput [id]="name">
+        <div class="input-group-append">
+
+            <div class="ibtn" matRipple (click)="onClear()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-form-field [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" *ngIf="login">
+    <mat-label>{{label}}</mat-label>
+    <input matInput type="text" lang="und" [(ngModel)]="value" name="{{name}}">
+    <!-- <ion-icon class="mt-2px" name="close-outline" *ngIf="value" matSuffix aria-label="Clear" (click)="value=''">
+    </ion-icon> -->
+</mat-form-field>

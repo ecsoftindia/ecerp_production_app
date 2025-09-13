@@ -1,31 +1,67 @@
 <ion-header [translucent]="true">
- 
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <div class="content">
-        <div class="text-center">
-           <img src="assets/Group 1.png">
-        </div>
-        <div class="login-container">
-            <div class="fs-29-600 text-center">Login</div>
-            <div class="input-grp">
-              <div class="d-flex flex-column">
-                <label class="fs-15-500 mb-1">User Name</label>
-                <input type="text" class="login-input">
-              </div>
-              <div class="d-flex flex-column mt-4">
-                <label class="fs-15-500 mb-1">Password</label>
-                <input type="text" class="login-input">
-              </div>
-            </div>
-            
-            <div class="login-btn" (click)="goToMachine()">
-               Authorize Me!
-            </div>
-            <div class="login-ftr-text text-center">
-              Can’t Remember my access ?
-            </div>
-        </div> 
+  <div class="content">
+    <div class="text-center">
+      <img src="assets/Group 1.png">
     </div>
+    <div class="login-container">
+      <div class="fs-29-600 text-center">Login</div>
+      <form #l="ngForm" (ngSubmit)="CheckSubmit(l)">
+        @if(type === 'pwd'){
+        <div class="input-grp">
+          <div class="d-flex flex-column">
+            <label class="fs-15-500 mb-1">User ID</label>
+            <ion-input type="tel" inputmode="numeric" class="login-input" [(ngModel)]="loginService.login.loginid"
+              name="loginid"></ion-input>
+          </div>
+          <div class="d-flex flex-column mt-4">
+            <label class="fs-15-500 mb-1">Password</label>
+            <ion-input type="password" [(ngModel)]="loginService.login.loginpin" class="login-input" name="loginpin">
+            </ion-input>
+          </div>
+        </div>
+        }
+        @else if(type === 'otp'){
+        <label class="fs-15-500 mt-3">Register Mobile No</label>
+        <ion-input type="tel" inputmode="numeric" class="login-input" [(ngModel)]="loginService.login.loginid"
+          name="loginid"></ion-input>
+
+        <div  class="mt-2 d-flex">
+          <ion-button size="small" class="ms-auto" (click)="sendotp()"> Send OTP</ion-button>
+        </div>
+
+        @if(otpField){
+        <label class="auto-labels mt-3">Enter the code</label>
+        <div class="otp-inputs">
+
+          <input [autofocus]="true" name="loginpin0" [(ngModel)]="otpArray[0]" type="text" maxlength="1"
+            class="otp-input" (input)="moveFocus($event, 0)" (keydown)="handleBackspace($event, 0)" inputmode="numeric"
+            appNumberOnly />
+          <input name="loginpin1" [(ngModel)]="otpArray[1]" type="text" maxlength="1" class="otp-input"
+            (input)="moveFocus($event, 1)" (keydown)="handleBackspace($event, 1)" inputmode="numeric" appNumberOnly />
+          <input name="loginpin2" [(ngModel)]="otpArray[2]" type="text" maxlength="1" class="otp-input"
+            (input)="moveFocus($event, 2)" (keydown)="handleBackspace($event, 2)" inputmode="numeric" appNumberOnly />
+          <input name="loginpin3" [(ngModel)]="otpArray[3]" type="text" maxlength="1" class="otp-input"
+            (input)="moveFocus($event, 3)" (keydown)="handleBackspace($event, 3)" inputmode="numeric" appNumberOnly />
+          <input name="loginpin4" [(ngModel)]="otpArray[4]" type="text" maxlength="1" class="otp-input"
+            (input)="moveFocus($event, 4)" (keydown)="handleBackspace($event, 4)" inputmode="numeric" appNumberOnly />
+          <input name="loginpin5" [(ngModel)]="otpArray[5]" type="text" maxlength="1" class="otp-input"
+            (input)="moveFocus($event, 5)" (keydown)="handleBackspace($event, 5)" inputmode="numeric" appNumberOnly />
+        </div>
+        <a (click)="sendotp()" class="ms-auto">Resend OTP</a>
+        }
+        }
+      </form>
+
+      <div class="login-btn" (click)="CheckSubmit(l)">
+        Authorize Me!
+      </div>
+      <div class="login-ftr-text text-center">
+        Can’t Remember my access ?
+      </div>
+    </div>
+  </div>
 </ion-content>

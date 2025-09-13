@@ -1,3 +1,16 @@
 export const environment = {
-  production: true
+  production: false,
+  corporateId: '',
+  basePath: 'https://ecbill.net/ecerp_live_api/api/',
+  imagePath: '/',
+  orgLogoPath: '/',
+  baseAppPath: '/',
+  encrypt: true,
+  maxFileSize: 3145728,
+  fileSizeErrorMsg: 'Upload File size Below 3 MB',
+  fileAccept: 'application/pdf, image/*',
+  serverDateFormat: 'dd MMM yyyy',
+  serverDateFormatWithTime: 'dd MMM yyyy hh:mm a',
+  dateViewFormat: 'dd MMM yyyy',
+  dateViewFormatWithTime: 'dd MMM yyyy HH:mm',
 };

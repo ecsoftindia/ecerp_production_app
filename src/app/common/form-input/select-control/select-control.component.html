@@ -1,0 +1,296 @@
+<!-- <div class="form-group relative">
+    <ng-container *ngIf="label !== ''">
+        <div class="d-flex align-items-center">
+            <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+            </label>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                    {{control && control.control && control.control.errors | appFormError: errorText}}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}" (click)="triggerModal()">
+        <input type="text" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="xName" name="{{xName}}"
+            placeholder="{{placeholder}}" [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}"
+            #forminput [id]="name" readonly>
+        <input type="hidden" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="value" name="{{value}}"
+            placeholder="{{placeholder}}" [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}"
+            #forminput [id]="name" readonly>
+    </div>
+</div>
+
+<ion-modal [trigger]="name">
+    <ng-template>
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-button (click)="dismiss()">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+                <ion-title>Select {{label}}</ion-title>
+               
+            </ion-toolbar>
+            <ion-toolbar class="toolbar-padding">
+                <ion-searchbar #searchBar mode="ios" [autofocus]="true" color="light" class="searchbar" placeholder="Search {{label}}"  [(ngModel)]="searchItem" (ionFocus)="onSearchBarFocus()"></ion-searchbar>
+              </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+            <ion-list>
+                <ion-item (click)="value = valuetype === 'int' ? 0: ''">
+                    <ion-label>Select</ion-label>
+                </ion-item>
+                <ng-container *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort">
+                    <ion-item (click)="valueSelected(item)">
+                        <ion-label>{{item[keyname]}}</ion-label>
+                        <ion-icon name="checkbox" slot="end" *ngIf="item[key] === tempSelected"></ion-icon>
+                      </ion-item>
+                </ng-container>
+            </ion-list>
+        </ion-content>
+    </ng-template>
+</ion-modal> -->
+
+
+<ng-container *ngIf="types === ''">
+    <div class="form-group relative">
+        <ng-container *ngIf="label !== ''">
+            <div class="d-flex align-items-center">
+                <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+                </label>
+                <div class="ms-auto d-flex align-items-center">
+                    <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                        {{control && control.control && control.control.errors | appFormError: errorText}}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}">
+            <div (click)="triggerModal()" class="">
+                <input type="text" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="xName" name="{{xName}}"
+                    placeholder="{{placeholder}}"
+                    [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" #forminput [id]="name"
+                    readonly>
+                <input type="hidden" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="value"
+                    name="{{value}}" placeholder="{{placeholder}}"
+                    [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" #forminput [id]="name"
+                    readonly>
+            </div>
+            <div (click)="cleardata()" class="close-icons ms-auto ion-text-end">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+        </div>
+    </div>
+
+    <ion-modal [isOpen]="isModalOpenforPattern" (willPresent)="onWillPresent($event)" (ionModalDidDismiss)="isModalOpenforPattern = false"
+        (didPresent)="onDidPresent($event)">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="dismiss2()">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <ion-title>Select {{label}}</ion-title>
+                    <!-- <ion-buttons slot="end" (click)="doConfirm()">
+                        <ion-button>
+                            Confirm
+                        </ion-button>
+                    </ion-buttons> -->
+                </ion-toolbar>
+                <ion-toolbar class="toolbar-padding">
+                    <ion-searchbar #searchh mode="ios" color="light" class="searchbar" placeholder="Search {{label}}"
+                        [(ngModel)]="searchItem" (ionInput)="cust!=='' ? searchlist($event) : null"></ion-searchbar>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <ng-container *ngIf="!multiple">
+
+                    <ion-list>
+                        <!-- <ion-item (click)="value = valuetype === 'int' ? 0: ''">
+                            <ion-label>Select</ion-label>
+                        </ion-item> -->
+                        <ng-container *ngIf="cust!==''">
+                            <ng-container
+                                *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort ; let i = index">
+                                <ion-card [ngClass]="{'bg-color-1': i % 2 === 0, 'bg-color-2': i % 2 !== 0}" class="m-0"
+                                    (click)="valueSelected(item)">
+
+                                    <ion-row>
+                                        <ion-col size="2" class="d-flex">
+                                            <div class="circle-container">
+                                                <div class="circle">
+                                                    <span>{{item[keyname].charAt(0)}}</span>
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="9">
+                                            <div class="d-flex">
+                                                <div class="customer-name-list">
+                                                    {{item[keyname]}}
+                                                    <small>{{item.address}}</small>
+                                                </div>
+                                            </div>
+
+                                        </ion-col>
+                                        <ion-col size="1">
+                                            <ion-icon name="checkbox" *ngIf="item[key] === tempSelected"></ion-icon>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="cust === ''">
+                            <ng-container *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort">
+                                <ion-item (click)="valueSelected(item)">
+                                    <ion-label>{{item[keyname]}}</ion-label>
+                                    <ion-icon name="checkbox" slot="end" *ngIf="item[key] === tempSelected"></ion-icon>
+                                </ion-item>
+                            </ng-container>
+                        </ng-container>
+                    </ion-list>
+                    <ion-infinite-scroll *ngIf="cust!==''" threshold="100px" (ionInfinite)="loadMore($event)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                        </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </ng-container>
+                <ng-container *ngIf="multiple">
+                    <ion-list>
+                        <ng-container *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort">
+                            <ion-item (click)="valueSelected(item)">
+                                <ion-label>{{item[keyname]}}</ion-label>
+                                <ion-icon name="checkbox" slot="end" *ngIf="isSelected(item)"></ion-icon>
+                            </ion-item>
+                        </ng-container>
+
+                        <ion-infinite-scroll *ngIf="cust!==''" threshold="100px" (ionInfinite)="loadMore($event)">
+                            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                            </ion-infinite-scroll-content>
+                        </ion-infinite-scroll>
+                    </ion-list>
+                </ng-container>
+            </ion-content>
+            <ion-footer>
+                <div class="ion-padding">
+                    <ion-button (click)="dismiss()" expand="block" color="secondary">Submit</ion-button>
+                </div>
+            </ion-footer>
+        </ng-template>
+    </ion-modal>
+</ng-container>
+
+
+<ng-container *ngIf="types !== ''">
+    <div class="form-group relative">
+        <ng-container *ngIf="label !== ''">
+            <div class="d-flex align-items-center">
+                <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+                </label>
+                <div class="ms-auto d-flex align-items-center">
+                    <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                        {{control && control.control && control.control.errors | appFormError: errorText}}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}"
+            (click)="triggerModal()">
+            <input type="text" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="xName" name="{{xName}}"
+                placeholder="{{placeholder}}" [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}"
+                #forminput [id]="name" readonly>
+            <input type="hidden" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="value" name="{{value}}"
+                placeholder="{{placeholder}}" [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}"
+                #forminput [id]="name" readonly>
+        </div>
+    </div>
+    <ion-modal [trigger]="name">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button (click)="dismiss2()">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <ion-title>Select {{label}}</ion-title>
+                    <!-- <ion-buttons slot="end" (click)="doConfirm()">
+                            <ion-button>
+                                Confirm
+                            </ion-button>
+                        </ion-buttons> -->
+                </ion-toolbar>
+                <ion-toolbar class="toolbar-padding">
+                    <ion-searchbar mode="ios" color="light" class="searchbar" placeholder="Search {{label}}"
+                        [(ngModel)]="searchItem" (ionInput)="searchlist($event)"></ion-searchbar>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding-top">
+                <ng-container *ngIf="!multiple">
+                    <ion-list>
+                        <!-- <ion-item (click)="value = valuetype === 'int' ? 0: ''">
+                            <ion-label>Select</ion-label>
+                        </ion-item> -->
+                        <ng-container *ngFor="let item of itemsNow | selectSearch: searchItem: keyname: sort">
+
+                            <ion-item (click)="valueSelected(item)">
+                                <ion-label>{{item[keyname]}}</ion-label>
+
+                                <ion-icon name="checkbox" slot="end" *ngIf="item[key] === tempSelected"></ion-icon>
+                            </ion-item>
+                        </ng-container>
+                    </ion-list>
+                </ng-container>
+                <ng-container *ngIf="multiple">
+                    <ng-container *ngFor="let item of itemsNow; let i = index">
+                        <ion-card [ngClass]="{'bg-color-1': i % 2 === 0, 'bg-color-2': i % 2 !== 0}" class="m-0"
+                            (click)="valueSelected(item)">
+                            <ion-row>
+                                <ion-col size="2" class="d-flex">
+                                    <div class="circle-container">
+                                        <div class="circle">
+                                            <span>{{item[keyname].charAt(0)}}</span>
+                                        </div>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="10">
+                                    <div class="d-flex">
+                                        <div class="customer-name-list">
+                                            {{item[keyname]}}
+                                            <small>{{item.address}}</small>
+                                        </div>
+                                        <div class="ion-text-end ms-auto">
+                                            <ion-icon name="checkbox" slot="end" *ngIf="item.selected"></ion-icon>
+                                        </div>
+                                    </div>
+
+                                </ion-col>
+                                <!-- <ion-col size="3" class="ion-text-end">
+                                    <ion-icon name="checkbox" slot="end" color="primary" *ngIf="isSelected(item)"></ion-icon>
+                                </ion-col> -->
+                            </ion-row>
+                        </ion-card>
+                    </ng-container>
+                    <!-- <ion-list>
+                        <ng-container *ngFor="let item of itemsNow">
+                            <ion-item (click)="valueSelected(item)">
+                                <ion-label>{{item[keyname]}}</ion-label>
+                                <ion-icon name="checkbox" slot="end" *ngIf="isSelected(item)"></ion-icon>
+                            </ion-item>
+                        </ng-container>
+                    </ion-list> -->
+                    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+                        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+                        </ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </ng-container>
+            </ion-content>
+            <ion-footer>
+                <div class="ion-padding">
+                    <ion-button (click)="dismiss()" expand="block" color="secondary">Submit</ion-button>
+                </div>
+            </ion-footer>
+        </ng-template>
+    </ion-modal>
+</ng-container>

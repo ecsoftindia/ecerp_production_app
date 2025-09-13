@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'select-machine',
-    loadChildren: () => import('./select-machine/select-machine.module').then( m => m.SelectMachinePageModule)
+    loadChildren: () => import('../start/select-machine/select-machine.module').then( m => m.SelectMachinePageModule)
   },
   {
     path: 'job-order-status',

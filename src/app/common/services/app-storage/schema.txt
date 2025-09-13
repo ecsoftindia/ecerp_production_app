@@ -1,0 +1,48 @@
+CREATE TABLE IF NOT EXISTS app_data (
+  id INTEGER PRIMARY KEY NOT NULL,
+  key_name TEXT NOT NULL,
+  value_data TEXT NOT NULL,
+  date_added INTEGER DEFAULT (strftime('%s', 'now')),
+  last_modified INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS offline_login (
+  id INTEGER PRIMARY KEY NOT NULL,
+  login_date INTEGER DEFAULT (strftime('%s', 'now')),
+  login_data TEXT NOT NULL,
+  last_modified INTEGER,
+);
+
+CREATE TABLE IF NOT EXISTS member_info (
+  id INTEGER PRIMARY KEY NOT NULL,
+  fnpf_no TEXT NOT NULL,
+  member_data TEXT NOT NULL,
+  first_name TEXT NULL,
+  father_name TEXT NULL,
+  tin TEXT NULL,
+  dob TEXT NULL,
+  legacy_member_id TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS nd_withdrawal_application (
+  id INTEGER PRIMARY KEY NOT NULL,
+  fnpf_no TEXT NOT NULL,
+  application_detail TEXT NOT NULL,
+  sync_flag   TEXT NOT NULL ,
+  application_status   TEXT NOT NULL ,
+  latitude   REAL NULL ,
+  longitude   REAL NULL ,
+  last_modified INTEGER,
+);
+
+CREATE TABLE IF NOT EXISTS submitted_nd_withdrawal_application (
+  id INTEGER PRIMARY KEY NOT NULL,
+  fnpf_no TEXT NOT NULL,
+  geo_location   TEXT NULL,
+  member_first_name   TEXT NULL,
+  member_full_name   TEXT NULL,
+  application_status   TEXT NOT NULL,
+  latitude   REAL NULL,
+  longitude   REAL NULL,
+  last_modified INTEGER,
+);

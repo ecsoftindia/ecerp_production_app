@@ -1,0 +1,65 @@
+tt===> Ticket title
+
+td===> Ticket Description
+
+tno===> Ticket Entry No
+
+tfc===>Ticket FinYearCode
+
+ted===>Ticket Entry Date
+
+tdt===>Ticket DateTime
+
+cn===>Contact Name
+
+ce===>Contact Email
+
+wpn===>Workphone No
+
+mpn===>Mobile Phone No
+
+cd===>Contact Designation
+
+tsn===>Ticket Status Name
+
+tsc===>Ticket Status Code
+
+tcn===>Ticket Category Name
+
+pn===>Priority Name
+
+rmn===>Received My Medium Name
+
+an===>Account Name
+
+sc===>Status Back Color
+
+apn===>AssignedTo Person Name
+
+apc===>AssignedTo Peson Code
+
+tde===>Ticket Days Elapsed
+
+sr===>Status Remarks                      
+
+st===>Ticket Service Type
+
+pvt=èPreferred Visit Time
+
+ad1===>Customer Address Line 1
+
+ad2===>Customer Address Line 2
+
+ad3===>Customer Address Line 3
+
+ad4===>Customer Address Line 4
+
+cyn===>City Name
+
+pctec ===>Party category code
+
+pcten ===>Party category name
+
+pcteclr ===>Party category color
+
+fbg ===>Feed Back Given or not

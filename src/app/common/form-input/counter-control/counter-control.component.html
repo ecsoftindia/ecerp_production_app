@@ -1,0 +1,42 @@
+<div class="add-remove-btn">
+  <ion-button color="primary" class="remove" size="small" (click)="adjustQty(-1)">
+    -
+  </ion-button>
+
+  <input autocomplete="none" appNoEmoji [autofocus]="autofocus"
+  [disabled]="btnClickedNow" [(ngModel)]="value" name="{{name}}" placeholder="{{placeholder}}"
+  [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" (blur)="doBlur()"
+  (focus)="doFocus()" (input)="KeyPress()" (keydown)="checkEnter($event)" #forminput appNumberOnly [max]="max" [limit]="maxlength" min="1" max="9"
+  [decimal]="decimal" [id]="name" readonly>
+
+  <!-- <ng-container *ngIf="!cartService.button"> -->
+  <ion-button color="primary" size="small" (click)="adjustQty(1)">
+    +
+  </ion-button>
+
+
+
+  <!-- <ion-button color="primary" size="small" (click)="adjustQty(1)" [disabled]="itemQnty  >= stockAvailability">
+    +
+  </ion-button> -->
+
+<!-- </ng-container> -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ng-container *ngIf="cartService.button">
+  <ion-button color="primary" size="small" (click)="adjustQty(1)" [disabled]="true">
+    +
+
+  </ion-button>
+</ng-container> -->
+
+</div>

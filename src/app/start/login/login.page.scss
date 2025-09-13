@@ -37,3 +37,25 @@
 .input-grp{
   margin-top: 50px;
 }
+
+
+.otp-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .otp-input:focus {
+    border-color: #000;
+    outline: none;
+  }

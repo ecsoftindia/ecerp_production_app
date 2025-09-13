@@ -1,0 +1,173 @@
+.button-container {
+  text-align: center;
+
+  .custom-btn {
+    --background: #1A1E44; // dark navy
+    --color: #ffffff; // white text
+    --border-radius: 8px;
+    margin-bottom: 16px;
+    // text-transform:none !important;
+    height: 48px; // <-- Your custom height
+    line-height: 48px; // <-- Vertically center text
+    --padding-top: 0; // Remove Ionic default padding
+    --padding-bottom: 0;
+  }
+
+  .or-text {
+    margin: 0px 0px 15px 0px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 400;
+  }
+}
+
+
+
+
+
+.background-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('../../../assets/login_back_img.png') no-repeat center center;
+  background-size: cover;
+  // color: #fff;
+}
+
+.content {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 50px;
+    transform: scale(2.5);
+  }
+}
+
+.content-body {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+
+}
+
+.content-body-2 {
+  position: absolute;
+  top: 55%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.set-corporateid {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 34px;
+  text-align: center;
+  letter-spacing: 0em;
+  color: #0B1B43;
+  font-family: 'Playfair Display', serif;
+}
+
+.paasing-set {
+  padding: 29px 0px 0px 105px;
+}
+
+.margin-tops {
+  margin-top: 19px;
+}
+
+.allrights {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 41px;
+  letter-spacing: 0em;
+  color: #181818;
+  margin-top: 4px;
+
+}
+
+.content-footer {
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 31px;
+  width: 100%;
+}
+
+ion-content {
+
+  --background: #FFFFFF !important;
+}
+
+.signs {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 34px;
+  letter-spacing: 0em;
+  color: #181818;
+}
+
+.customized-log {
+  font-size: 21px;
+  font-weight: 400;
+  color: #000000;
+  line-height: 19.41px;
+  text-align: start;
+  margin-right: auto;
+  display: flex;
+  margin-bottom: 11px;
+  // font-size: 20px;
+  // font-weight: normal;
+  // line-height: 25px;
+  // letter-spacing: 0em;
+  // color: #223054;
+  // display: flex;
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+a {
+  text-align: center;
+  text-decoration: underline !important;
+  color: var(--ion-color-secondary) !important;
+}
+
+.default-logo {
+  width: 35%;
+  height: 35%;
+}
+
+.content-2 {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  //padding: 31px;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 50px;
+    transform: scale(2.5);
+  }
+}

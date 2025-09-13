@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="background-img">
+    <div class="content">
+      <!-- <img src="assets/icon/jpeg_ec-sfa.jpg" alt=""> -->
+      <img src="assets/icon/png_ec-sfa.png" alt="">
+    </div>
+    <div class="content-body">
+      <div class="set-corporateid">
+        Corporate Id
+      </div>
+
+      <!-- <div class="content-body-2"> -->
+      <div class="paasing-set">
+        <form #l="ngForm" (ngSubmit)="setcorporateid(l)">
+          <app-input-control [errorTrue]="errorTrue" [(ngModel)]="user.corporatename" name="corporatename"
+            label="Corporate ID"></app-input-control>
+        </form>
+        <div class="margin-tops">
+          <ion-button (click)="setcorporateid(l)" expand="block" color="secondary"> Submit</ion-button>
+        </div>
+
+        <div class="margin-tops">
+          <a (click)="onBtnClick()">New User ? Register Here</a>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="content-footer">
+
+      <!-- <div class="allrights">
+      Forgot Password?
+    </div> -->
+      <a href="https://www.ecsoft.com" target="_blank" rel="noopener noreferrer">
+        <img class="default-logo" src="assets/icon/ECSOFT Logo 2025.png">
+      </a>
+      <!-- <img class="default-logo" src="assets/icon/ecsoft_logo.png"> -->
+    </div>
+
+  </div>
+</ion-content>
+
+<my-component #popModal [from]="'ECSFA App'" (status)="getStatus($event)">
+</my-component>

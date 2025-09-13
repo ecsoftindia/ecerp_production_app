@@ -1,0 +1,60 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>change-customer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">change-customer</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-content> -->
+<ion-button size="small" color="primary" (click)="process()">
+  Change
+</ion-button>
+
+
+<ion-modal [isOpen]="customerlist" (ionModalDidDismiss)="customerlist = false">
+  <ng-template>
+    <!-- <ion-header class="ion-no-border"> -->
+    <app-header class="ion-no-border">
+    </app-header>
+    <ion-toolbar>
+      <div class="p-2">
+        <div class="d-flex align-item-center">
+          <ion-icon (click)="customerlist=false" class="back-arrow" name="arrow-back-outline"></ion-icon>
+          <div class="common-titile">
+            Select Customer
+          </div>
+        </div>
+      </div>
+    </ion-toolbar>
+    <!-- </ion-header> -->
+    <ion-content>
+      <ng-container *ngFor="let item of custList; let i=index">
+        <ion-card (click)="changeCust(i)" [ngClass]="{'select':SIndex === i}">
+          <ion-card-header>
+            <ion-card-title>{{item.customerid}} | {{item.customername | titlecase}}</ion-card-title>
+            <ion-card-subtitle *ngIf="item.mobileno!==''">{{item.mobileno}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{item.address}}
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar class="ion-padding-start ion-padding-end">
+        <ion-button expand="block" color="primary" (click)="onSubmit()">Submit</ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ng-template>
+</ion-modal>

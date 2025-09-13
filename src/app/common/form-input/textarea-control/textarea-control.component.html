@@ -1,0 +1,66 @@
+<!-- <div class="form-group">
+    <ng-container *ngIf="label !== ''">
+        <div class="d-flex align-items-center">
+            <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+            </label>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                   {{ control && control.control && control.control.errors | appFormError: errorText }}
+
+                   
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="input-group" [ngClass]="{'disabled': btnClickedNow}">
+        <textarea class="form-control {{className}}" autocomplete="none" appNoEmoji [autofocus]="autofocus"
+            [appUpperCase]="upperCase && !lowerCase" [appLowerCase]="lowerCase && !upperCase" [disabled]="btnClickedNow"
+            [appLimit]="maxlength" [(ngModel)]="value" name="{{name}}" placeholder="{{placeholder}}"
+            [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" (blur)="doBlur()"
+            (focus)="doFocus()" (keydown)="checkEnter($event)" #forminput [id]="name">
+        </textarea>
+        <div class="input-group-append">
+            <div class="ibtn" matRipple (click)="onClear()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="form-group">
+    <ng-container *ngIf="label !== ''">
+        <div class="d-flex align-items-center">
+            <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+            </label>
+            <div class="ms-auto d-flex align-items-center">
+                <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+                   {{ control && control.control && control.control.errors | appFormError: errorText }}
+
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="input-group" [ngClass]="{'disabled': btnClickedNow}">
+        <textarea class="form-control {{className}}" autocomplete="none" appNoEmoji [autofocus]="autofocus"
+            [appUpperCase]="upperCase && !lowerCase" [appLowerCase]="lowerCase && !upperCase" [disabled]="btnClickedNow"
+            [appLimit]="maxlength" [(ngModel)]="value" name="{{name}}" placeholder="{{placeholder}}"
+            [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" (blur)="doBlur()"
+            (focus)="doFocus()" (keydown)="checkEnter($event)" #forminput [id]="name">
+        </textarea>
+        <div class="input-group-append">
+            <div class="ibtn" matRipple (click)="onClear()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+

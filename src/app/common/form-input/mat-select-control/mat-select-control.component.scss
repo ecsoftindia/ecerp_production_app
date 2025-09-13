@@ -1,0 +1,105 @@
+.form-group .form-control {
+    padding-right: unset; 
+    padding-left: 1rem;
+    border: 1px solid #7C7C7C;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    background: #ffffff !important;
+
+    &:focus {
+        &+.input-group-prepend1 {
+            .ibtn {
+                display: flex;
+
+            }
+        }
+    }
+}
+
+.select-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .mat-mdc-select {
+        flex-grow: 1;
+    }
+
+
+    /* Style the default select control dropdown icon (center it) */
+    .mat-select-icon {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        // justify-content: center;
+
+    }
+
+    /* Style the mat-mdc-select's close icon (align it to the right) */
+    .mat-mdc-select-close-icon {
+        margin-left: auto;
+        cursor: pointer;
+        /* Align to the right */
+    }
+
+
+    .s-close {
+        position: absolute !important;
+        right: 5px !important;
+        top: 78% !important;
+        transform: translateY(-50%) !important;
+        fill: currentColor !important;
+        font-size: 14px;
+    }
+}
+
+::ng-deep .mat-mdc-select-panel{
+    background-color: #ffffff !important;
+    width: 250px !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+    /* Adjust the position and style of the arrow icon as needed */
+    position: absolute !important;
+    // right: -3px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    fill: currentColor !important;
+    /* Use the current text color for the arrow icon */
+}
+
+::ng-deep .mat-mdc-select-trigger {
+    display: inline-flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    width: 88% !important;
+}
+.detailadrs {
+    color: #888;
+    max-width: 100%;
+    margin-top: -5px;
+    font-size: 10.5px;
+    white-space: nowrap !important;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.overdue {
+    color: red;
+}
+
+
+::ng-deep .form-control.pad-adj.pr-1.no-placeholder .mat-select-value-text {
+    display: none !important;
+}
+
+label{
+    margin-bottom: 6px;
+  }

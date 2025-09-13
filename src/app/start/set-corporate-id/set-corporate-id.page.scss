@@ -1,0 +1,97 @@
+.background-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // background: url('../../../assets/icon/login_back_img.png') no-repeat center center;
+    // background-size: cover;
+    // color: #fff;
+    background-color: #f6fafd;
+  }
+  
+  .background-img .content {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 20px;
+   // background: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background to the content */
+    border-radius: 10px;
+  }
+
+  .content-body {
+    // position: absolute;
+    // top: 35%;
+    // left: 37%;
+    // transform: translate(-50%, -50%);
+    // text-align: center;
+    // width: 100%;
+
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    // padding: 31px;
+    width: 100%;
+  }
+
+  .content-body-2{
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    // position: absolute;
+    // top: 50%;
+    // left: 37%;
+    // transform: translate(-50%, -50%);
+    // text-align: center;
+    // // padding: 31px;
+    // width: 100%;
+  }
+
+  .set-corporateid{
+    font-size: 36px;
+    font-weight: 700;
+    font-family: fangsong;
+    color: var(--secondary);
+  }
+
+  .paasing-set{
+    padding: 29px 0px 0px 105px;
+  }
+
+  .margin-tops{
+    margin-top: 30px;
+  }
+
+  .allrights{
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    line-height:21.09px;
+
+}
+
+.content-footer{
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 31px;
+    width: 100%;
+  }
+
+  .default-logo{
+    width: 35%;
+    height: 35%;
+  }
+
+  a{
+    text-align: center;
+    text-decoration: underline !important;
+    color: var(--ion-color-secondary) !important;
+  }

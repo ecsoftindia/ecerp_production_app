@@ -1,0 +1,21 @@
+<div class="form-group num">
+  <ng-container *ngIf="label !== ''">
+    <div class="d-flex align-items-center">
+      <label for="">{{label}} <ng-container *ngIf="required"><span class="text-danger">*</span></ng-container>
+      </label>
+      <div class="ms-auto d-flex align-items-center">
+        <div class="mandatory-text" *ngIf="(control!.control!.invalid) && errorTrueNow">
+         {{ control && control.control && control.control.errors | appFormError: errorText }}
+
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}">
+    <input type="text" class="form-control" autocomplete="none" appNoEmoji [autofocus]="autofocus"
+      [disabled]="btnClickedNow" [(ngModel)]="xvalue" name="{{name}}" placeholder="{{placeholder}}"
+      [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" (blur)="doBlur()" (focus)="doFocus()"
+      (input)="KeyPress()" (keydown)="checkEnter($event)" #forminput [id]="name" (keyup)="onKeyUp($event)"
+      inputmode="numeric">
+  </div>
+</div>
