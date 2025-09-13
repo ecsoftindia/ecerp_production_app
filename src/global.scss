@@ -74,6 +74,17 @@ body {
 
 
 
+.form-group{
+    .input-group{
+        input{
+            &:focus{
+                border: 1px solid var(--ion-color-primary) !important;
+                box-shadow: unset !important;
+            }
+        }
+    }
+}
+
 
 :root {
     --ion-color-primary: rgba(45, 100, 102, 1);

@@ -2,7 +2,7 @@
   text-align: center;
 
   .custom-btn {
-    --background: #1A1E44; // dark navy
+    --background: rgba(0, 107, 144, 1); // dark navy
     --color: #ffffff; // white text
     --border-radius: 8px;
     margin-bottom: 16px;
@@ -11,6 +11,7 @@
     line-height: 48px; // <-- Vertically center text
     --padding-top: 0; // Remove Ionic default padding
     --padding-bottom: 0;
+    font-family: Inter;
   }
 
   .or-text {
@@ -29,8 +30,9 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('../../../assets/login_back_img.png') no-repeat center center;
-  background-size: cover;
+  background: #e6f7f9;
+  // background: url('../../../assets/login_back_img.png') no-repeat center center;
+  // background-size: cover;
   // color: #fff;
 }
 
@@ -53,7 +55,7 @@
 
 .content-body {
   position: absolute;
-  top: 34%;
+  top: 30%; //34%
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -63,21 +65,21 @@
 
 .content-body-2 {
   position: absolute;
-  top: 55%;
-  left: 35%;
+  top: 50%; //55%
+  left: 37%;  //35%
   transform: translate(-50%, -50%);
   text-align: center;
   width: 100%;
 }
 
 .set-corporateid {
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 34px;
   text-align: center;
   letter-spacing: 0em;
   color: #0B1B43;
-  font-family: 'Playfair Display', serif;
+  font-family: Inter;
 }
 
 .paasing-set {
@@ -95,7 +97,7 @@
   letter-spacing: 0em;
   color: #181818;
   margin-top: 4px;
-
+  font-family: Inter;
 }
 
 .content-footer {

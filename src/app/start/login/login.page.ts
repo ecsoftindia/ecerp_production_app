@@ -554,4 +554,8 @@ export class LoginPage implements OnInit {
     this.loginService.login.loginpin = this.loginpin;
   }
 
+  goToCorporate(){
+    this.router.navigate(['set-corporate-id'])
+  }
+
 }

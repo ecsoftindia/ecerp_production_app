@@ -1,8 +1,8 @@
-<ion-content>
+<ion-content >
   <div class="background-img">
     <div class="content">
       <!-- <img src="assets/icon/jpeg_ec-sfa.jpg" alt=""> -->
-      <img src="assets/icon/png_ec-sfa.png" alt="">
+      <img src="assets/Group 1.png" alt="">
     </div>
     <div class="content-body">
       <div class="set-corporateid">
@@ -12,11 +12,15 @@
       <!-- <div class="content-body-2"> -->
       <div class="paasing-set">
         <form #l="ngForm" (ngSubmit)="setcorporateid(l)">
-          <app-input-control [errorTrue]="errorTrue" [(ngModel)]="user.corporatename" name="corporatename"
-            label="Corporate ID"></app-input-control>
+          <div class="input-grp">
+            <div class="text-start fs-15-500">Corporate ID</div>
+            <app-input-control [errorTrue]="errorTrue" [(ngModel)]="user.corporatename" name="corporatename"
+             class="input-corporateid"></app-input-control>
+          </div>
+          
         </form>
         <div class="margin-tops">
-          <ion-button (click)="setcorporateid(l)" expand="block" color="secondary"> Submit</ion-button>
+          <div (click)="setcorporateid(l)"  class="login-btn"> Submit</div>
         </div>
 
         <div class="margin-tops">
