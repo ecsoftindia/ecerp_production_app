@@ -172,7 +172,7 @@ export class LoginPage implements OnInit {
       else if (this.type === 'pwd') {
         this.loginService.login.loginotp = ''
       }
-      this.apiService.authenticateuser(this.loginService.login).subscribe((success: any) => {
+      this.apiService.authenticateuser(this.loginService.login).subscribe(async (success: any) => {
         if (success.Status) {
           this.storage.set('authorizationResponse', success.data);
           this.userCode = success.data.usercode
@@ -184,31 +184,32 @@ export class LoginPage implements OnInit {
           // success.data.notifymessage = "Your app will expired";
           // this.notifymessage = success.data.notifymessage;
           if (success.data.notify === 'YES') {
-            this.notifyTrue = true;
+            if (success.data.blockapp === 'NO') {
+              let alert = await this.alertController.create({
+                header: success.data.notifymessage,
+                buttons: [
+                  {
+                    text: 'Proceed',
+                    handler: () => { this.goNext(success.data) }
+                  }
+                ],
+
+                backdropDismiss: false,
+
+              });
+              await alert.present();
+              this.notifyTrue = true;
+            }
             if (success.data.blockapp === 'YES') {
               this.blockappTrue = true;
             }
-          } else {
+          }
+          else {
             if (success.data.blockapp === 'YES') {
               this.notifyTrue = true;
               this.blockappTrue = true;
             } else {
-              this.currentfinyear = success.data.finyears;
-              this.currentfinyear.forEach(async (element: any) => {
-                if (element.iscurrentfinyear === 'YES') {
-                  this.selectedFinYear.finyearcode = element.finyearcode;
-                  await this.storage.set('selectedFinYear', element.finyearcode)
-                }
-              });
-              success.data.branches.forEach((element: any) => {
-                this.counterCode = element.counters[0].countercode;
-              });
-              this.checkAuthorizeLogin(success.data.temptoken, '1', this.counterCode, this.selectedFinYear.finyearcode)
-              // setTimeout(() => {
-              //   window.location.assign(this.appSetting.environment.basePath + '/login-select-fin-year');
-              //   // this.btnClicked = false;
-              //   // this.router.navigateByUrl('/login-select-branch');
-              // }, 500);
+              this.goNext(success.data)
             }
           }
 
@@ -224,23 +225,6 @@ export class LoginPage implements OnInit {
             }
           }
           else if (success.userprevloggedin === true) {
-            // const dialogRef = this.dialog.open(CommonAlertComponent, {
-            //   width: '450px',
-            //   // disableClose: true,
-            //   data: {
-            //     msg: success.Message + '.' + '  ' + 'Do you want clear existing session and proceed?',
-            //     refreshbtn: true,
-            //     trueBtnText: 'YES',
-            //     falseBtnText:'NO'
-            //   },
-            // });
-
-            // dialogRef.afterClosed().subscribe((result:any) => {
-            //   console.log(result)
-            //   if (result) {
-            //     this.clearAllSession(l)
-            //   }
-            // });
             this.presentAlert(success, l)
           }
           else {
@@ -253,6 +237,20 @@ export class LoginPage implements OnInit {
     }
   }
 
+
+  goNext(val: any) {
+    this.currentfinyear = val.finyears;
+    this.currentfinyear.forEach(async (element: any) => {
+      if (element.iscurrentfinyear === 'YES') {
+        this.selectedFinYear.finyearcode = element.finyearcode;
+        await this.storage.set('selectedFinYear', element.finyearcode)
+      }
+    });
+    val.branches.forEach((element: any) => {
+      this.counterCode = element.counters[0].countercode;
+    });
+    this.checkAuthorizeLogin(val.temptoken, '1', this.counterCode, this.selectedFinYear.finyearcode)
+  }
 
   checkAuthorizeLogin(token: any, br: any, counter: any, fin: any) {
     const dataset = {
@@ -554,7 +552,7 @@ export class LoginPage implements OnInit {
     this.loginService.login.loginpin = this.loginpin;
   }
 
-  goToCorporate(){
+  goToCorporate() {
     this.router.navigate(['set-corporate-id'])
   }
 

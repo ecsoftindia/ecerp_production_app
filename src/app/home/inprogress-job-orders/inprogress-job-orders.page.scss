@@ -1,5 +1,5 @@
 .content{
-    padding: 15px 15px;
+    padding: 0px 15px 15px 15px;
 }
 .card-progress-jo{
     border-radius: 7px;
@@ -8,7 +8,7 @@
     padding: 10px 15px;
 }
 
-ion-content{
+ion-content,ion-toolbar{
     --background: transparent !important;
   position: relative;
   overflow: hidden; // prevents scrollbars from the curve
@@ -25,4 +25,14 @@ ion-content{
     z-index: -1;
   }
     
+  }
+
+  .pname-elipse{
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .content-head{
+    padding: 15px 15px;
   }

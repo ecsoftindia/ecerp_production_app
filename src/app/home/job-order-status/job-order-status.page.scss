@@ -146,9 +146,33 @@
           background: #6a4c93;
         }
   
-        &.rework {
-          background: #ef233c;
+        &.scrap {
+          background: #525252;;
+        }
+
+        &.completed {
+          background: #068150;
+        }
+
+        &.rejected {
+          background:#ef233c
         }
       }
     }
+}
+
+.count-bg{
+  background: lightgrey;
+  padding: 2px 7px 0;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.process-bg{
+    background: #fff3;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 11px;
 }

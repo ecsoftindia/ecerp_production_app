@@ -19,5 +19,8 @@ export class FooterPage implements OnInit {
   goToUserProfile(){
     this.router.navigate(['/home/user-profile'])
   }
+  goToInprogress() {
+    this.router.navigate(['/home/inprogress-job-orders']);
+  }
 
 }

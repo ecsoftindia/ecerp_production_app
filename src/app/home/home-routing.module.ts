@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('../start/select-machine/select-machine.module').then( m => m.SelectMachinePageModule)
   },
   {
-    path: 'job-order-status',
+    path: 'job-order-status/:id',
     loadChildren: () => import('./job-order-status/job-order-status.module').then( m => m.JobOrderStatusPageModule)
   },
   {

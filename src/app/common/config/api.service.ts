@@ -1719,5 +1719,33 @@ export class ApiService {
 				})
 			);
 	}
+
+	getProcessItemsList(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data.postData('processitemslist', body, options).pipe(
+		  finalize(() => this.data.serviceCompleted()),
+		  catchError((err) => {
+			options.hideErrorMethod ? "" : this.data.errorMethod(err);
+			return throwError(err);
+		  })
+		);
+	  }
+
+	  joborderlistData(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data.postData('reports/joborder/processstatus', body, options).pipe(
+		  finalize(() => this.data.serviceCompleted()),
+		  catchError((err) => {
+			options.hideErrorMethod ? "" : this.data.errorMethod(err);
+			return throwError(err);
+		  })
+		);
+	  }
 }
 

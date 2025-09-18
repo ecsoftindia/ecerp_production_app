@@ -9,6 +9,7 @@ import { InprogressJobOrdersPageRoutingModule } from './inprogress-job-orders-ro
 import { InprogressJobOrdersPage } from './inprogress-job-orders.page';
 import { HeaderPageModule } from '../header/header.module';
 import { FooterPageModule } from '../footer/footer.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { FooterPageModule } from '../footer/footer.module';
     IonicModule,
     InprogressJobOrdersPageRoutingModule,
     HeaderPageModule,
-    FooterPageModule
+    FooterPageModule,
+    MatTooltipModule
   ],
   declarations: [InprogressJobOrdersPage]
 })

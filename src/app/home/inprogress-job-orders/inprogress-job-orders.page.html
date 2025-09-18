@@ -1,33 +1,37 @@
 <app-header></app-header>
 
+<ion-toolbar>
+  <div class="content-head d-flex align-items-center">
+    <img src="assets/arrow-left.png" (click)="goBack()">
+    <div class="fs-20-600 ms-4">In-Progress Job Orders</div>
+ </div>
+</ion-toolbar>
+
 <ion-content [fullscreen]="true">
    <div class="content">
-      <div class="content-head d-flex align-items-center">
-         <img src="assets/arrow-left.png" (click)="goBack()">
-         <div class="fs-20-600 ms-4">In-Progress Job Orders</div>
-      </div>
+      
       <div class="content-body mt-3">
-          <div class="card card-progress-jo mb-2" (click)="goToJobOrderdetailed()">
+          <div class="card card-progress-jo mb-2" (click)="goToJobOrderStatus(val)" *ngFor="let val of datas">
             <div class="d-flex align-items-center">
-              <div class="fs-14-300">Id: #2563147</div>
-              <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>
+              <div class="fs-14-300">JoNo: {{val.jono}}</div>
+              <div class="fs-14-400 ms-auto">Dated: {{val.joed}}</div>
             </div>
             <div class="d-flex align-items-center mt-2">
-              <div class="fs-16-400">Job Order Title</div>
+              <div class="fs-16-400 pname-elipse">{{val.ina}}</div>
               <div class=" ms-auto">
-                <div class="blue-btn">In-Progress</div>
+                <div class="fs-14-400">Qty : {{val.joqty}}</div>
               </div>
             </div>
             <div class="d-flex align-items-center mt-2">
-              <div class="fs-14-300">ETC: 03-09-2025</div>
+              <div class="fs-14-300">Due on: {{val.jodued}}</div>
               <div class=" ms-auto">
-                <div class="blue-btn">On-time</div>
+                <div class="fs-14-400">Process : {{val.processinfo.length}}</div>
               </div>
             </div>
 
           </div>
           
-          <div class="card card-progress-jo mb-2">
+          <!-- <div class="card card-progress-jo mb-2">
             <div class="d-flex align-items-center">
               <div class="fs-14-300">Id: #2563147</div>
               <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>
@@ -85,11 +89,12 @@
               </div>
             </div>
 
-          </div>
+          </div> -->
 
 
       </div>
    </div>
 </ion-content>
+
 
 <app-footer class="m-2"></app-footer>
