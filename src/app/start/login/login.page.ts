@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
     console.log(paramsId)
     this.type = paramsId
     if (this.type === 'otp') {
-      this.firstInputElement.nativeElement.focus();
+      this.firstInputElement?.nativeElement.focus();
     }
   }
 
