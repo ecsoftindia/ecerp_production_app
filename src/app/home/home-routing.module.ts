@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: () => import('./job-order-status/job-order-status.module').then( m => m.JobOrderStatusPageModule)
   },
   {
-    path: 'job-order-status-detail',
+    path: 'job-order-status-detail/:id',
     loadChildren: () => import('./job-order-status/job-order-status-detail/job-order-status-detail.module').then( m => m.JobOrderStatusDetailPageModule)
   },
   {

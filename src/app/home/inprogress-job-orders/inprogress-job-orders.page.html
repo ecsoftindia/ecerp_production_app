@@ -3,7 +3,8 @@
 <ion-toolbar>
   <div class="content-head d-flex align-items-center">
     <img src="assets/arrow-left.png" (click)="goBack()">
-    <div class="fs-20-600 ms-4">In-Progress Job Orders</div>
+    <div class="fs-20-600 ms-4">Job Orders List</div>
+    <ion-icon name="filter-outline" class="ms-auto fs-3" (click)="showDraw()"></ion-icon>
  </div>
 </ion-toolbar>
 
@@ -98,3 +99,118 @@
 
 
 <app-footer class="m-2"></app-footer>
+
+<ion-modal #modal2 [isOpen]="isModalOpenforPattern" [backdropDismiss]="false" [breakpoints]="[0.75]" (ionModalDidDismiss)="isModalOpenforPattern = false">
+  <ng-template>
+    <ion-header [translucent]="true">
+    
+      <div class="header-padcust">
+        <div class="">
+          <ion-icon (click)="backstopage()" class="all-page-arrows" name="arrow-back-outline"></ion-icon>
+        </div>
+        <div class="all-pagetitilecard ms-3">
+          Filters
+        </div>
+
+      </div>
+
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="card customzied-prolist">
+        <div class="mt-2 mb-2">
+          
+          <!-- <div class="mt-2">
+            <app-date-control [(ngModel)]="joborderlistreq.fromdate" label="From Date" name="fromdate">
+            </app-date-control>
+          </div>
+          <div class="mt-2">
+            <app-date-control [(ngModel)]="joborderlistreq.todate" label="To Date" name="todate">
+            </app-date-control>
+          </div> -->
+
+<!--         
+            <ion-label>Date</ion-label>
+            <input type="date" [(ngModel)]="selectedDate" /> -->
+         
+
+        
+        
+          <div class="mt-2">
+            <app-select-control  [multiple]="true"  [items]="processList" key="ic" keyname="ina"
+              [(ngModel)]="joborderlistreq.processitemcodes" name="processitemcodes" label="Process">
+            </app-select-control>
+          </div>
+
+
+          <div class="mt-2">
+            <app-select-control  [multiple]="true"  [items]="machinedata" key="ic" keyname="ina"
+              [(ngModel)]="joborderlistreq.machinecodes" name="machinecodes" label="Machines">
+            </app-select-control>
+          </div>
+
+
+          <div class="mt-2">
+            <app-select-control  [multiple]="true" [items]="empolyes" key="employeecode"
+              keyname="employeename" [(ngModel)]="joborderlistreq.operatorcodes" name="operatorcodes" label="Operators">
+            </app-select-control>
+          </div>
+
+          <div class="mt-2">
+            <app-select-control  [multiple]="true" [items]="joborderstatus" key="value"
+              keyname="name" [(ngModel)]="joborderlistreq.joprocessstatuscodes" name="joprocessstatuscodes"
+              label="Status">
+            </app-select-control>
+          </div>
+
+
+          <div class="mt-2">
+            <app-select-control  [multiple]="true" [items]="itemsuser" key="usercode"
+              keyname="username" [(ngModel)]="joborderlistreq.usercodes" name="usercodes" tabindex="4"
+              label="Prepared by">
+            </app-select-control>
+          </div>
+
+
+         <!-- <div class="mt-2">
+            <app-select-category [multiple]="true" [(ngModel)]="itemgrcodes" name="itemgrcodes" tabindex="4"
+              label="Product Group">
+            </app-select-category>
+          </div> -->
+
+        
+          <div class="h35 mt-2">
+            <mat-slide-toggle [checked]="joborderlistreq.onlyprocesspendingjo === 'YES'"
+              (change)="joborderlistreq.onlyprocesspendingjo = $event.checked? 'YES':'NO'" labelPosition="after"
+              color="green" MatSlideToggleChange>
+              <span>Only Pending Job Order</span>
+            </mat-slide-toggle>
+          </div>
+
+
+          <div class="h35 mt-2">
+            <mat-slide-toggle labelPosition="after" color="primary" [(ngModel)]="showProductImg"
+              (change)="onToggleChange($event)">
+              <span>Show Product img</span>
+            </mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+      <ion-footer style="box-shadow: none !important;" class="mt-4 mb-2">
+        <div class="d-flex align-items-center ms-auto">
+          <div class="customized-btns-up ms-auto me-3">
+            <ion-button  color="primary" (click)="clearAll()"  >
+              Clear
+            </ion-button>
+          </div>
+          <div class="customized-btns-up">
+            <ion-button  color="primary" (click)="applyFilter()">
+              Submit
+            </ion-button>
+          </div>
+        </div>
+      </ion-footer>
+    </ion-content>
+
+   
+  </ng-template>
+</ion-modal>

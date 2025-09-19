@@ -27,7 +27,7 @@ import { AppStorageService } from '../../services/app-storage/app-storage.servic
   selector: 'app-select-control',
   templateUrl: './select-control.component.html',
   styleUrls: ['./select-control.component.scss'],
-  standalone:false
+  standalone: false
 })
 export class SelectControlComponent extends FromInputControl implements OnInit {
   isModalOpenforPattern = false;
@@ -180,7 +180,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
         element.selected = true;
         // this.selectedItems.push(element)
       }
-      else{
+      else {
         delete element.selected
       }
     });
@@ -190,7 +190,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
         if (this.types === '') {
           this.getSelected();
         }
-        else{
+        else {
           // const selectedCodes = this.value;
           // let names:any = [];
           // this.itemsNow.forEach((element: any) => {
@@ -202,7 +202,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
           // });
           // this.xName = names.join(', ');
         }
-     
+
         // this.clearIcon = true;
       }
     }
@@ -242,16 +242,16 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
       if (xvalue) {
 
         if (this.value) {
-          console.log('Value', this.value , this.types)
+          console.log('Value', this.value, this.types)
           if (this.types === '') {
             this.getSelected();
           }
-          else{
+          else {
             // const selectedKeys = this.value;
             // this.selectedItems = this.itemsNow.filter((item: any) => selectedKeys.includes(item[this.key].toString()));
             // this.xName = this.selectedItems.map((item) => item[this.keyname]).join(', ');
             const selectedCodes = this.value;
-            let names:any = [];
+            let names: any = [];
             this.itemsNow.forEach((element: any) => {
               if (selectedCodes.includes(element[this.key])) {
                 element.selected = true;
@@ -278,12 +278,19 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
 
       if (index > -1) {
         this.selectedItem = this.itemsNow[index];
-        console.log(this.selectedItem , this.selectedItem[this.keyname])
+        console.log(this.selectedItem, this.selectedItem[this.keyname])
         this.xName = this.selectedItem[this.keyname];
       }
     } else {
-      const selectedKeys = this.value;
-      this.selectedItems = this.itemsNow.filter((item: any) => selectedKeys.includes(item[this.key].toString()));
+      // const selectedKeys = this.value;
+      // this.selectedItems = this.itemsNow.filter((item: any) => selectedKeys.includes(item[this.key].toString()));
+
+      // this.xName = this.selectedItems.map((item) => item[this.keyname]).join(', ');
+      const selectedKeys = Array.isArray(this.value) ? this.value : [];
+
+      this.selectedItems = this.itemsNow.filter((item: any) =>
+        selectedKeys.includes(item[this.key]?.toString())
+      );
 
       this.xName = this.selectedItems.map((item) => item[this.keyname]).join(', ');
     }
@@ -426,7 +433,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
   //               this.selectedItems.push(element)
   //             }
   //           });
-           
+
   //         });
   //         this.xName =   this.selectedItems.map((item) => item[this.keyname]).join(', ');
   //       }
@@ -437,16 +444,16 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
   //           }
   //         })
   //         this.xName = this.selectedItem[0][this.keyname];
-        
+
   //       }
 
   //     }
-       
-      
+
+
   //   })
-      
-    
-   
+
+
+
   //   this.modal.dismiss();
   //   this.isModalOpenforPattern = false
   // }
@@ -454,14 +461,14 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
   dismiss2() {
     this.storage.get('setpreviosedata').then((val: any) => {
       if (!val) return;
-  
+
       this.value = val;
       if (this.multiple) {
-        console.log(this.value,this.itemsNow)
+        console.log(this.value, this.itemsNow)
         this.selectedItems = this.itemsNow.filter((item: any) =>
           this.value.some((valItem: any) => item[this.key] === valItem)
         );
-        console.log(this.selectedItems )
+        console.log(this.selectedItems)
         this.xName = this.selectedItems.map((item) => item[this.keyname]).join(', ');
       } else {
         this.selectedItem = this.itemsNow.find((item: any) => item[this.key] === this.value);
@@ -472,7 +479,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
       this.isModalOpenforPattern = false;
     });
   }
-  
+
   isSelected(item: any) {
     return this.selectedItems.includes(item);
   }
@@ -499,7 +506,7 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
       //       element.selected = true;
       //     }
       //   });
-        
+
       // }, 200);
 
 
@@ -517,14 +524,14 @@ export class SelectControlComponent extends FromInputControl implements OnInit {
     }
   }
 
-  cleardata(){
-    
-    if(this.multiple){
-      this.value= []
+  cleardata() {
+
+    if (this.multiple) {
+      this.value = []
 
     }
-    else{
-      this.value=''
+    else {
+      this.value = ''
 
     }
     this.xName = ''

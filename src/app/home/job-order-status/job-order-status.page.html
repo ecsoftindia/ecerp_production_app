@@ -41,84 +41,64 @@
 
 
       <!-- Card 1 -->
-      <div (click)="goToJobOrderdetailed()" class="process-card" *ngFor="let p of processinfo">
-        <div class="card-header">
-          <div class="process-icon">
-            <ion-icon name="cog-outline"></ion-icon>
-          </div>
-          <div class="process-info">
-            <h2>{{p.pna}}</h2>
-            <p class="time">12:15 PM</p>
-          </div>
+       @for(process of processinfo; track process;let i = $index){
+        <div  class="process-card">
+          <div class="card-header">
+            <div class="process-icon">
+              <ion-icon name="cog-outline"></ion-icon>
+            </div>
+            <div class="process-info">
+              <h2>{{process.pna}}</h2>
+              @if(+process?.qtyinfo?.qcpassed === +id?.joqty){
+                <div class="time">
+                  {{formatDurationMins(process?.totalmins)}}
+                </div>
+              }
+              @if(process?.osrcyn === 'YES'){
+                <span class="outsource-items">Outsource</span>
+              }
+              
+            </div>
+  
+            @if (shouldShowSection(process?.qtyinfo, id?.joqty, process)) {
+            <div class="status-badge open" 
+             (click)="openJobOrderdetaileds(process[i],process, getStatusAction(id?.joqty,process[i],
+              process[i]?.qtyinfo), getQtyValue(id?.joqty,process[i],process[i]?.qtyinfo))">
 
-          @if (shouldShowSection(p.processinfo?.qtyinfo, id?.joqty, p.processinfo)) {
-          <div class="status-badge open">
-            {{ getStatusName(id?.joqty, p.processinfo, p.processinfo?.qtyinfo) }}
-            @if (getQtyValue(id?.joqty, p.processinfo, p.processinfo?.qtyinfo) > 0) {
-            <span>
-              :
-              {{ getQtyValue(id?.joqty, p.processinfo, p.processinfo?.qtyinfo) }}
-            </span>
+              {{ getStatusName(id?.joqty, process, process?.qtyinfo) }}
+
+              @if (getQtyValue(id?.joqty, process, process?.qtyinfo) > 0) {
+              <span>
+                :
+                {{ getQtyValue(id?.joqty, process, process?.qtyinfo) }}
+              </span>
+              }
+            </div>
             }
-          </div>
-          }
-
-          @if(shouldHideSection(p.processinfo?.qtyinfo, id?.joqty ,p.processinfo)){
-          @if(+p.processinfo?.qtyinfo.open > 0){
-          <div class="status-badge open">
-            Open : {{p.processinfo?.qtyinfo.open}}
-          </div>
-          }
-          }
-
-          @if( +p.processinfo?.qtyinfo.open === 0 &&
-          +p.processinfo?.qtyinfo.inprocess === 0 &&
-          +p.processinfo?.qtyinfo.completed === 0 && +p.processinfo?.qtyinfo.qcpassed === 0 &&
-          +p.processinfo?.qtyinfo.qcpending === 0 ){
-          N/A
-          }
-
-        </div>
-
-        <div class="card-body">
-          @if((+p.processinfo?.qtyinfo.open === 0 && +p.processinfo?.qtyinfo.qcpassed === 0 &&
-          +p.processinfo?.qtyinfo.qcpending === 0 &&
-          +p.processinfo?.qtyinfo.inprocess === 0 &&
-          +p.processinfo?.qtyinfo.inprocess === 0 &&
-          +p.processinfo?.qtyinfo.completed === 0)){
-          <div class="info-cards">
-            <div class="info-box">
-              <ion-icon name="hardware-chip-outline"></ion-icon>
-              <div>
-                <span class="label">
-                  Machine
-                </span>
-                <strong>
-                  {{ (getFirstMachineName(p.processinfo) | titlecase) }}
-                </strong>
-              </div>
-              <div class="ms-auto count-bg">
-                {{ getMachineCount(p.processinfo) }}
-              </div>
+  
+            @if(shouldHideSection(process?.qtyinfo, id?.joqty ,process)){
+            @if(+process?.qtyinfo?.open > 0){
+            <div class="status-badge open" (click)="openJobOrderdetailed(processinfo[i],processinfo,'processplan',processinfo[i]?.qtyinfo?.open)">
+              Open : {{process?.qtyinfo?.open}}
             </div>
-            <div class="info-box">
-              <ion-icon name="person-outline"></ion-icon>
-              <div>
-                <span class="label">
-                  Operator
-                </span>
-                <strong>
-                  {{ (getOperatorArrayByQty(p.processinfo)[0]?.operatorname | titlecase) || 'N/A'}}
-                </strong>
-              </div>
-              <div class="ms-auto count-bg">
-                {{ getOperatorArrayByQty(p.processinfo).length }}
-              </div>
-            </div>
+            }
+            }
+  
+            @if( +process?.qtyinfo.open === 0 &&
+            +process?.qtyinfo.inprocess === 0 &&
+            +process?.qtyinfo.completed === 0 && +process?.qtyinfo.qcpassed === 0 &&
+            +process?.qtyinfo.qcpending === 0 ){
+            N/A
+            }
+  
           </div>
-          }
-
-          @if(shouldShowSection(p.processinfo?.qtyinfo, p.joqty ,p.processinfo)){
+  
+          <div class="card-body">
+            @if((+process?.qtyinfo.open === 0 && +process?.qtyinfo.qcpassed === 0 &&
+            +process?.qtyinfo.qcpending === 0 &&
+            +process?.qtyinfo.inprocess === 0 &&
+            +process?.qtyinfo.inprocess === 0 &&
+            +process?.qtyinfo.completed === 0)){
             <div class="info-cards">
               <div class="info-box">
                 <ion-icon name="hardware-chip-outline"></ion-icon>
@@ -127,11 +107,11 @@
                     Machine
                   </span>
                   <strong>
-                    {{ (getFirstMachineName(p.processinfo) | titlecase) }}
+                    {{ (getFirstMachineName(process) | titlecase) }}
                   </strong>
                 </div>
                 <div class="ms-auto count-bg">
-                  {{ getMachineCount(p.processinfo) }}
+                  {{ getMachineCount(process) }}
                 </div>
               </div>
               <div class="info-box">
@@ -141,92 +121,127 @@
                     Operator
                   </span>
                   <strong>
-                    {{ (getOperatorArrayByQty(p.processinfo)[0]?.operatorname | titlecase) || 'N/A'}}
+                    {{ (getOperatorArrayByQty(process)?.[0]?.operatorname | titlecase) || 'N/A'}}
                   </strong>
                 </div>
                 <div class="ms-auto count-bg">
-                  {{ getOperatorArrayByQty(p.processinfo).length }}
+                  {{ getOperatorArrayByQty(process)?.length }}
                 </div>
               </div>
             </div>
-          }
-
-
-
-        </div>
-
-
-        @if(shouldHideSection(p.processinfo?.qtyinfo, p.joqty ,p.processinfo)){
-           @if((+p.processinfo?.qtyinfo.open > 0) || (+p.processinfo?.qtyinfo.inprocess > 0) ||
-           (+p.processinfo?.qtyinfo.qcpending > 0 ||
-           +p.processinfo?.qtyinfo.completed > 0) || (p.processinfo?.insyn === 'YES' && +p.processinfo?.qtyinfo.qcpassed > 0)
-           ||  (p.processinfo?.insyn === 'NO' && +p.processinfo?.qtyinfo.completed > 0)){
-            <div class="card-footer"> 
-              <div>
-                @if(+p.processinfo?.qtyinfo.inprocess > 0){
-                  <div class="tag inprocess">In-Process
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.inprocess}}
+            }
+  
+            @if(shouldShowSection(process?.qtyinfo, id.joqty ,process)){
+              <div class="info-cards">
+                <div class="info-box">
+                  <ion-icon name="hardware-chip-outline"></ion-icon>
+                  <div>
+                    <span class="label">
+                      Machine
                     </span>
+                    <strong>
+                      {{ (getFirstMachineName(process) | titlecase) }}
+                    </strong>
                   </div>
-                }
-                
-                @if(+p.processinfo?.qtyinfo.qcpending > 0 &&
-                        +p.processinfo?.qtyinfo.completed > 0){
-                  <div class="tag inspection">Inspection
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.qcpending}}
+                  <div class="ms-auto count-bg">
+                    {{ getMachineCount(process) }}
+                  </div>
+                </div>
+                <div class="info-box">
+                  <ion-icon name="person-outline"></ion-icon>
+                  <div>
+                    <span class="label">
+                      Operator
                     </span>
+                    <strong>
+                      {{ (getOperatorArrayByQty(process)?.[0]?.operatorname | titlecase) || 'N/A'}}
+                    </strong>
                   </div>
-                }
-              
-                @if(p.processinfo.insyn === 'YES' && +p.processinfo?.qtyinfo.qcpassed > 0){
-                  <div class="tag completed">Completed
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.qcpassed}}
-                    </span>
+                  <div class="ms-auto count-bg">
+                    {{ getOperatorArrayByQty(process).length }}
                   </div>
-                }
-
-                @if(p.processinfo.insyn === 'NO' && +p.processinfo?.qtyinfo.completed > 0){
-                  <div class="tag completed">Completed
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.completed}}
-                    </span>
-                  </div>
-                }
-               
-
+                </div>
               </div>
-
-              <div class="mt-1">
-
-                @if(+p.processinfo?.qtyinfo.rejected > 0){
-                  <div class="tag rejected">Rejected
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.rejected}}
-                    </span>
-                  </div>
-                }
+            }
+  
+  
+  
+          </div>
+  
+  
+          @if(shouldHideSection(process?.qtyinfo, id.joqty ,process)){
+             @if((+process?.qtyinfo.open > 0) || (+process?.qtyinfo.inprocess > 0) ||
+             (+process?.qtyinfo.qcpending > 0 ||
+             +process?.qtyinfo.completed > 0) || (process?.insyn === 'YES' && +process?.qtyinfo.qcpassed > 0)
+             ||  (process?.insyn === 'NO' && +process?.qtyinfo.completed > 0)){
+              <div class="card-footer"> 
+                <div>
+                  @if(+process?.qtyinfo.inprocess > 0){
+                    <div class="tag inprocess">In-Process
+                      <span class="process-bg">
+                        {{process?.qtyinfo.inprocess}}
+                      </span>
+                    </div>
+                  }
+                  
+                  @if(+process?.qtyinfo.qcpending > 0 &&
+                          +process?.qtyinfo.completed > 0){
+                    <div class="tag inspection">Inspection
+                      <span class="process-bg">
+                        {{process?.qtyinfo.qcpending}}
+                      </span>
+                    </div>
+                  }
+                
+                  @if(process?.insyn === 'YES' && +process?.qtyinfo.qcpassed > 0){
+                    <div class="tag completed">Completed
+                      <span class="process-bg">
+                        {{process?.qtyinfo.qcpassed}}
+                      </span>
+                    </div>
+                  }
+  
+                  @if(process?.insyn === 'NO' && +process?.qtyinfo.completed > 0){
+                    <div class="tag completed">Completed
+                      <span class="process-bg">
+                        {{process?.qtyinfo.completed}}
+                      </span>
+                    </div>
+                  }
                  
-                @if(+p.processinfo?.qtyinfo.scrap > 0){
-                  <div class="tag scrap">Scrap
-                    <span class="process-bg">
-                      {{p.processinfo?.qtyinfo.scrap}}
-                    </span>
-                  </div>
-                }
+  
+                </div>
+  
+                <div class="mt-1">
+  
+                  @if(+process?.qtyinfo.rejected > 0){
+                    <div class="tag rejected">Rejected
+                      <span class="process-bg">
+                        {{process?.qtyinfo.rejected}}
+                      </span>
+                    </div>
+                  }
+                   
+                  @if(+process?.qtyinfo.scrap > 0){
+                    <div class="tag scrap">Scrap
+                      <span class="process-bg">
+                        {{process?.qtyinfo.scrap}}
+                      </span>
+                    </div>
+                  }
+                  
+  
                 
-
-              
-
+  
+                </div>
               </div>
-            </div>
-           }
+             }
+            
+          }
           
-        }
-        
-      </div>
+        </div>
+       }
+      
 
       <!-- Card 2 -->
       <!-- <div (click)="goToJobOrderdetailed()" class="process-card">

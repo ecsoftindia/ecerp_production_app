@@ -9,14 +9,18 @@ export class SelectSearchPipe implements PipeTransform {
   transform(items: any, filter: any, filterName: any, sort: boolean): any {
     if (!filter) {
       if (sort && items) {
-        return items.sort((a: any, b: any) => {
-          // // console.log(a);
-          a[filterName].toLowerCase() !== b[filterName].toLowerCase()
-            ? a[filterName].toLowerCase() < b[filterName].toLowerCase()
-              ? -1
-              : 1
-            : 0;
-        });
+        // return items.sort((a: any, b: any) => {
+        //   // // console.log(a);
+        //   a[filterName].toLowerCase() !== b[filterName].toLowerCase()
+        //     ? a[filterName].toLowerCase() < b[filterName].toLowerCase()
+        //       ? -1
+        //       : 1
+        //     : 0;
+        // });
+        return items.sort((a: any, b: any) =>
+          ((a[filterName] ?? '') + '').toLowerCase()
+            .localeCompare(((b[filterName] ?? '') + '').toLowerCase())
+        );
       } else {
         return items;
       }

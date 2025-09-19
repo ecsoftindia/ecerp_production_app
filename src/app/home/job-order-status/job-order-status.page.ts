@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/common/services/data/data.service';
 import { UrlService } from 'src/app/common/services/url/url.service';
+import { ApiService } from 'src/app/common/config/api.service';
 @Component({
   selector: 'app-job-order-status',
   templateUrl: './job-order-status.page.html',
@@ -14,6 +15,8 @@ export class JobOrderStatusPage  {
   id:any;
   id1:any;
   processinfo:any=[]
+  processColumns: string[] = [];
+  processList:any=[]
   
   constructor(
     public location:Location,
@@ -21,6 +24,7 @@ export class JobOrderStatusPage  {
     public route: ActivatedRoute,
     public data: DataService,
     public urlService: UrlService,
+    public apiService: ApiService,
   ) { 
     this.route.paramMap.subscribe(params => {
       // fetch your new parameters here, on which you are switching the routes and call ngOnInit()
@@ -33,7 +37,8 @@ export class JobOrderStatusPage  {
   }
   
   async init(){
-     await this.data.checkToken()
+     await this.data.checkToken();
+     this.getProcessList();
 
      let id = this.route.snapshot.paramMap.get('id');
      this.id1 = await this.urlService.decode(id);
@@ -41,6 +46,9 @@ export class JobOrderStatusPage  {
      console.log(this.id)
      this.processinfo = this.id.processinfo
      console.log(this.processinfo)
+     const maxProcessCount = Math.max(this.processinfo?.length ?? 0);
+     // Generate dynamic process column names
+     this.processColumns = Array.from({ length: maxProcessCount }, (_, i) => `processes${i}`);
   }
 
 
@@ -180,6 +188,176 @@ getMachineCount(process: any): number {
   if (+qty.qcpending > 0 && +qty.completed > 0) return process?.machineinfo_qc?.length || 0;
   return process?.machineinfo?.length || 0;
 }
+
+formatDurationMins(mins: number | string): string {
+  mins = +mins; // Ensure it's a number
+  if (isNaN(mins) || mins < 1) {
+    return '0 mins';
+  }
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  // Examples: 1 hr 2 mins, or just 3 hrs, or just 7 mins
+  return [
+    h ? `${h} hr${h > 1 ? 's' : ''}` : '',
+    m ? `${m} min${m > 1 ? 's' : ''}` : ''
+  ].filter(Boolean).join(' ');
+}
+
+async openJobOrderdetailed(val: any, val2: any, val3: any, qty: any) {
+  console.log(qty)
+
+  if (val.osrcyn === 'YES') {
+    return;
+  }
+
+  // if (+val.qtyinfo.rejected > 0 || +val.qtyinfo.scrap > 0) {
+  //   return;
+  // }
+
+
+  const { inprocess, completed, open, qcpassed, qcpending } = val.qtyinfo ?? {};
+  if ([inprocess, completed, open, qcpassed, qcpending].every(v => +v === 0)) {
+    this.data.openAlertFalse('Previous process not yet completed');
+    return;
+  }
+
+
+
+  if (
+    val.insyn === 'YES' &&
+    +val.qtyinfo.completed > 0 &&
+    +val.qtyinfo.qcpassed > 0 &&
+    +val.qtyinfo.completed === +val.qtyinfo.qcpassed && +val.qtyinfo.qcpassed === +val2.joqty
+  ) {
+    return;
+  }
+
+
+  if (val.insyn === 'NO' && +val.qtyinfo.completed > 0 && +val2.joqty === +val.qtyinfo.completed) {
+    return;
+  }
+
+  let from = ''
+  from = val3
+  // if (+val.qtyinfo.inprocess > 0) {
+  //   from = 'processcompleted'
+  // }
+  // if (+val.qtyinfo.open > 0) {
+  //   from = 'processplan'
+  // }
+  // if (+val.qtyinfo.qcpending > 0 && +val.qtyinfo.completed > 0) {
+  //   from = 'inspection'
+  // }
+  
+
+ const obj = {
+    from: from,
+    dirConvertion: true,
+    processentry: val,
+    processdetail: val2,
+    qty: qty,
+    processList: this.processList,
+    processid : this.id
+   
+  }
+  let id = await this.urlService.encode(obj);
+  this.router.navigateByUrl('/home/job-order-status-detail/' + id)
+
+}
+
+async openJobOrderdetaileds(val: any, val2: any, val3: any, qty: any) {
+
+  console.log(qty)
+
+  if (val?.osrcyn === 'YES') {
+    return;
+  }
+
+  if (+val.qtyinfo.rejected > 0 || +val.qtyinfo.scrap > 0) {
+    return;
+  }
+
+
+  const { inprocess, completed, open, qcpassed, qcpending } = val.qtyinfo;
+  if ([inprocess, completed, open, qcpassed, qcpending].every(v => +v === 0)) {
+    this.data.openAlertFalse('Previous process not yet completed');
+    return;
+  }
+
+
+
+  if (
+    val.insyn === 'YES' &&
+    +val.qtyinfo.completed > 0 &&
+    +val.qtyinfo.qcpassed > 0 &&
+    +val.qtyinfo.completed === +val.qtyinfo.qcpassed && +val.qtyinfo.qcpassed === +val2.joqty
+  ) {
+    return;
+  }
+
+
+  if (val.insyn === 'NO' && +val.qtyinfo.completed > 0 && +val2.joqty === +val.qtyinfo.completed) {
+    return;
+  }
+
+  let from = ''
+  from = val3
+  // if (+val.qtyinfo.inprocess > 0) {
+  //   from = 'processcompleted'
+  // }
+  // if (+val.qtyinfo.open > 0) {
+  //   from = 'processplan'
+  // }
+  // if (+val.qtyinfo.qcpending > 0 && +val.qtyinfo.completed > 0) {
+  //   from = 'inspection'
+  // }
+  
+
+  
+
+  const obj = {
+    from: from,
+    dirConvertion: true,
+    processentry: val,
+    processdetail: val2,
+    qty: qty,
+    processList: this.processList,
+    processid : this.id
+   
+  }
+  let id = await this.urlService.encode(obj);
+  this.router.navigateByUrl('/home/job-order-status-detail/' + id)
+
+}
+
+getStatusAction(joqty: any, val: any, qtyinfo: any): string {
+  const status = this.getStatusName(joqty, val, qtyinfo);
+
+  if (status === 'In Process') {
+    return 'processcompleted';
+  }
+
+  if (status === 'Open') {
+    return 'processplan';
+  }
+
+
+  if (status === 'For Inspection') {
+    return 'inspection';
+  }
+  return status.toLowerCase().replace(' ', '');
+}
+
+getProcessList() {
+  this.apiService.getProcessItemsList({}).subscribe((success: any) => {
+    if (success.Status) {
+      this.processList = success.data;
+    } else {
+      this.processList = []
+    }
+  })
+}
+
 
  
 }

@@ -1747,5 +1747,35 @@ export class ApiService {
 		  })
 		);
 	  }
+
+	  getItems(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data
+		  .postData('items', body, options)
+		  .pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+			  options ? options.hideErrorMethod ? '' : this.data.errorMethod(err) : '';
+			  return throwError(err);
+			})
+		  );
+	  }
+
+	  getEmployeeList(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data.postData('employee/list', body, options).pipe(
+		  finalize(() => this.data.serviceCompleted()),
+		  catchError((err) => {
+			options.hideErrorMethod ? "" : this.data.errorMethod(err);
+			return throwError(err);
+		  })
+		);
+	  }
 }
 

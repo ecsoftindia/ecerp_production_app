@@ -9,6 +9,7 @@ import { JobOrderStatusDetailPageRoutingModule } from './job-order-status-detail
 import { JobOrderStatusDetailPage } from './job-order-status-detail.page';
 import { FooterPageModule } from '../../footer/footer.module';
 import { HeaderPageModule } from '../../header/header.module';
+import { FormInputModule } from 'src/app/common/form-input/form-input.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { HeaderPageModule } from '../../header/header.module';
     IonicModule,
     JobOrderStatusDetailPageRoutingModule,
     HeaderPageModule,
-    FooterPageModule
+    FooterPageModule,
+    FormInputModule,
   ],
   declarations: [JobOrderStatusDetailPage]
 })

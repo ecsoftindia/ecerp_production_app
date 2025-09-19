@@ -10,6 +10,10 @@ import { InprogressJobOrdersPage } from './inprogress-job-orders.page';
 import { HeaderPageModule } from '../header/header.module';
 import { FooterPageModule } from '../footer/footer.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormInputModule } from 'src/app/common/form-input/form-input.module';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
+
 
 @NgModule({
   imports: [
@@ -19,7 +23,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InprogressJobOrdersPageRoutingModule,
     HeaderPageModule,
     FooterPageModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormInputModule,
+    MatSlideToggleModule,
+    FormsModule,
   ],
   declarations: [InprogressJobOrdersPage]
 })
