@@ -273,12 +273,12 @@ async openJobOrderdetaileds(val: any, val2: any, val3: any, qty: any) {
     return;
   }
 
-  if (+val.qtyinfo.rejected > 0 || +val.qtyinfo.scrap > 0) {
+  if (+val?.qtyinfo.rejected > 0 || +val?.qtyinfo.scrap > 0) {
     return;
   }
 
 
-  const { inprocess, completed, open, qcpassed, qcpending } = val.qtyinfo;
+  const { inprocess, completed, open, qcpassed, qcpending } = val?.qtyinfo || {};
   if ([inprocess, completed, open, qcpassed, qcpending].every(v => +v === 0)) {
     this.data.openAlertFalse('Previous process not yet completed');
     return;
@@ -287,16 +287,16 @@ async openJobOrderdetaileds(val: any, val2: any, val3: any, qty: any) {
 
 
   if (
-    val.insyn === 'YES' &&
-    +val.qtyinfo.completed > 0 &&
-    +val.qtyinfo.qcpassed > 0 &&
-    +val.qtyinfo.completed === +val.qtyinfo.qcpassed && +val.qtyinfo.qcpassed === +val2.joqty
+    val?.insyn === 'YES' &&
+    +val?.qtyinfo.completed > 0 &&
+    +val?.qtyinfo.qcpassed > 0 &&
+    +val?.qtyinfo.completed === +val?.qtyinfo.qcpassed && +val?.qtyinfo.qcpassed === +val2?.joqty
   ) {
     return;
   }
 
 
-  if (val.insyn === 'NO' && +val.qtyinfo.completed > 0 && +val2.joqty === +val.qtyinfo.completed) {
+  if (val?.insyn === 'NO' && +val?.qtyinfo.completed > 0 && +val2?.joqty === +val?.qtyinfo.completed) {
     return;
   }
 
@@ -332,7 +332,7 @@ async openJobOrderdetaileds(val: any, val2: any, val3: any, qty: any) {
 
 getStatusAction(joqty: any, val: any, qtyinfo: any): string {
   const status = this.getStatusName(joqty, val, qtyinfo);
-
+  console.log(this.getStatusName(joqty, val, qtyinfo));
   if (status === 'In Process') {
     return 'processcompleted';
   }
@@ -357,6 +357,44 @@ getProcessList() {
     }
   })
 }
+
+getQtyStatusClass(
+  qtyinfo: { completed: string; inprocess: string; open: string; qcpending: string; rejected: string; scrap: string },
+  val: any
+): string {
+  if (!qtyinfo){
+    
+    return 'back-grnd-clr';
+  } 
+
+  // 🔹 Highest priority first
+  if (+qtyinfo.rejected > 0) {
+    return 'rejected-back-clr';
+  }
+
+  if (+qtyinfo.scrap > 0) {
+    return 'scrap-back-clr';
+  }
+
+  if (+qtyinfo.open > 0) {
+    return 'back-grnd-clr'; // blue
+  }
+
+  if (+qtyinfo.inprocess > 0) {
+    return 'backclrwi8'; // yellow
+  }
+
+  if (+qtyinfo.completed > 0 && +qtyinfo.qcpending === 0) {
+    return 'completeback'; // green
+  }
+
+  if (+qtyinfo.qcpending > 0 && +qtyinfo.completed > 0) {
+    return 'reworkback';
+  }
+
+  return 'back-grnd-clr'; // default
+}
+
 
 
  

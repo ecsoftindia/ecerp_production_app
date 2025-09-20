@@ -1777,5 +1777,33 @@ export class ApiService {
 		  })
 		);
 	  }
+
+	  jobProcessItemsConvertToDraftInhouse(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data.postData('jobprocessitems/convert/draftinhouseprocessitems', body, options).pipe(
+		  finalize(() => this.data.serviceCompleted()),
+		  catchError((err) => {
+			options.hideErrorMethod ? "" : this.data.errorMethod(err);
+			return throwError(err);
+		  })
+		);
+	  }
+
+	  confirmProcessPlan(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+		  ? (options = this.data.defaultOptions)
+		  : (options = this.data.setOptions(options));
+		return this.data.postData('processplanentry/confirm', body, options).pipe(
+		  finalize(() => this.data.serviceCompleted()),
+		  catchError((err) => {
+			options.hideErrorMethod ? "" : this.data.errorMethod(err);
+			return throwError(err);
+		  })
+		);
+	  }
 }
 

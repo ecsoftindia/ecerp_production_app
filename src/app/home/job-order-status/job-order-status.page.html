@@ -11,9 +11,9 @@
       <div class="fs-14-300">ETC: {{id?.jodued}}</div>
     </div>
     <div class="mt-2 d-flex align-items-center">
-      <div>
-        <div class="fs-16-500">{{id?.ina}}</div>
-        <!-- <div class="fs-13-400">Description Content</div> -->
+      <div class="">
+        <div class="fs-16-500 productname-elipsis">{{id?.ina}}</div>
+        
       </div>
       <div class="d-flex align-items-center ms-auto">
 
@@ -42,7 +42,7 @@
 
       <!-- Card 1 -->
        @for(process of processinfo; track process;let i = $index){
-        <div  class="process-card">
+        <div  class="process-card" [ngClass]="process && process[i] ? getQtyStatusClass(process[i]?.qtyinfo,id?.joqty) : ''">
           <div class="card-header">
             <div class="process-icon">
               <ion-icon name="cog-outline"></ion-icon>

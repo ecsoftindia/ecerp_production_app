@@ -9,39 +9,39 @@
     <div class="content-sec-card">
 
       @if(dirConvertion){
-        <div class="content-sec-modern">
-          <ion-card>
-            <ion-card-content>
-              <ion-grid>
-                <!-- Row 1: Product ID & Product Name -->
-                <ion-row>
-                  <ion-col size="6" class="info-col">
-                    <div class="info-label">Product ID</div>
-                    <div class="info-value">{{processid?.refn}}</div>
-                  </ion-col>
-                  <ion-col size="6" class="info-col right-align">
-                    <div class="info-label">Product Name</div>
-                    <div class="info-value">{{processid?.ina}}</div>
-                  </ion-col>
-                </ion-row>
-  
-                <!-- Row 2: Job Order No & Date -->
-                <ion-row>
-                  <ion-col size="6" class="info-col">
-                    <div class="info-label">Job Order No</div>
-                    <div class="info-value">{{processid?.jono}}</div>
-                  </ion-col>
-                  <ion-col size="6" class="info-col right-align">
-                    <div class="info-label">Date</div>
-                    <div class="info-value">{{processid?.joed}}</div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card-content>
-          </ion-card>
-        </div>
+      <div class="content-sec-modern">
+        <ion-card>
+          <ion-card-content>
+            <ion-grid>
+              <!-- Row 1: Product ID & Product Name -->
+              <ion-row>
+                <ion-col size="6" class="info-col">
+                  <div class="info-label">Product ID</div>
+                  <div class="info-value">{{processid?.refn}}</div>
+                </ion-col>
+                <ion-col size="6" class="info-col right-align">
+                  <div class="info-label">Product Name</div>
+                  <div class="info-value">{{processid?.ina}}</div>
+                </ion-col>
+              </ion-row>
+
+              <!-- Row 2: Job Order No & Date -->
+              <ion-row>
+                <ion-col size="6" class="info-col">
+                  <div class="info-label">Job Order No</div>
+                  <div class="info-value">{{processid?.jono}}</div>
+                </ion-col>
+                <ion-col size="6" class="info-col right-align">
+                  <div class="info-label">Date</div>
+                  <div class="info-value">{{processid?.joed}}</div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
       }
-    
+
 
 
 
@@ -55,17 +55,34 @@
   <div class="content p-0">
     <ion-card>
       <ion-card-content class="modern-section">
-        <div class="process-caption">
-          <div class="caption-label">Process Name</div>
-          <div class="caption-value">
-            <ion-icon name="briefcase-outline"></ion-icon>
-            
-              @if (dirConvertion) { 
+        <div class="process-caption d-flex align-items-center">
+          <div>
+            <div class="caption-label">Process Name</div>
+            <div class="caption-value">
+              <ion-icon name="briefcase-outline"></ion-icon>
+
+              @if (dirConvertion) {
               {{ processentry?.pna }}
-             } @else {
+              } @else {
               {{ detailData?.processname }}
-            } 
+              }
+            </div>
           </div>
+          @if(from === 'processplan' || from === 'processcompleted' || from === 'inspection'){
+            <div class="ms-auto">
+              <div class="caption-label">Status</div>
+              @if(this.from === 'processplan'){
+                <div class="status-bg"> Open</div>
+              }
+              @if(this.from === 'processcompleted'){
+                <div class="status-bg"> Inprocess</div>
+              }
+              @if(this.from === 'inspection'){
+                <div class="status-bg"> For Inspection</div>
+              }
+             </div>
+          }
+         
         </div>
         <!-- Machines -->
         <div class="field-block">
@@ -73,76 +90,76 @@
             <ion-icon name="cog-outline"></ion-icon>
             <span>Machines ({{ machinecodes.length }})</span>
           </div>
-  
+
           <div *ngIf="!isEditing" class="value-list">
             <span *ngFor="let machine of machinecodes" class="chip">
               {{ getMachineName(machine) }}
             </span>
           </div>
-  
+
           <!-- <ion-select *ngIf="isEditing" [(ngModel)]="machines" multiple="true" class="edit-select">
             <ion-select-option *ngFor="let opt of allMachines" [value]="opt">{{ opt }}</ion-select-option>
           </ion-select> -->
 
           @if(isEditing){
-            <app-select-control  [multiple]="true"  [items]="machinedata" key="ic" keyname="ina"
-            [(ngModel)]="machinecodes" name="machinecodes" >
-           </app-select-control>
+          <app-select-control [multiple]="true" [items]="machinedata" key="ic" keyname="ina" [(ngModel)]="machinecodes"
+            name="machinecodes">
+          </app-select-control>
           }
 
         </div>
-  
+
         <!-- Operators -->
         <div class="field-block">
           <div class="label">
             <ion-icon name="person-outline"></ion-icon>
             <span>Operators ({{ operatorcodes.length }})</span>
           </div>
-  
+
           @if(!isEditing){
-            <div class="value-list">
-              <span *ngFor="let op of operatorcodes" class="chip">
-                {{ getEmployeeName(op) }}
-              </span>
-            </div>
+          <div class="value-list">
+            <span *ngFor="let op of operatorcodes" class="chip">
+              {{ getEmployeeName(op) }}
+            </span>
+          </div>
           }
-          
-  
+
+
           <!-- <ion-select *ngIf="isEditing" [(ngModel)]="operators" multiple="true" class="edit-select">
             <ion-select-option *ngFor="let opt of allOperators" [value]="opt">{{ opt }}</ion-select-option>
           </ion-select> -->
           @if(isEditing){
-            <app-select-control  [multiple]="true"  [items]="empolyes" key="employeecode" keyname="employeename"
-            [(ngModel)]="operatorcodes" name="operatorcodes" >
-           </app-select-control>
+          <app-select-control [multiple]="true" [items]="empolyes" key="employeecode" keyname="employeename"
+            [(ngModel)]="operatorcodes" name="operatorcodes">
+          </app-select-control>
           }
-          
+
         </div>
-  
+
         <!-- Qty -->
         <div class="field-block">
           <div class="label">
             <ion-icon name="cube-outline"></ion-icon>
             <span>Quantity</span>
           </div>
-  
+
           @if(!isEditing){
-            <div class="value-text">
-              {{ totalQty }}
-            </div>
+          <div class="value-text">
+            {{ totalQty }}
+          </div>
           }
-        
+
 
           <!-- <ion-input *ngIf="isEditing" type="number" [(ngModel)]="qty" class="edit-input"></ion-input> -->
-          
+
           @if(isEditing){
-            <app-number-control [btnClicked]="btnClicked" [(ngModel)]="totalQty" name="totalQty">
-            </app-number-control>
+          <app-number-control [btnClicked]="btnClicked" [(ngModel)]="totalQty" name="totalQty">
+          </app-number-control>
           }
-         
+
 
         </div>
-  
+
         <!-- Action -->
         <div class="action-btn">
           <ion-button shape="round" color="primary" (click)="toggleEdit()">
@@ -153,16 +170,16 @@
       </ion-card-content>
     </ion-card>
   </div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 </ion-content>
 
 <div class="start-button-container">
-  <ion-button (click)="submitfinal()" expand="block" class="start-button" >
+  <ion-button (click)="submitfinal()" expand="block" class="start-button">
     Start
   </ion-button>
 </div>

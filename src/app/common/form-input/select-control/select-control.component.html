@@ -67,7 +67,7 @@
             </div>
         </ng-container>
         <div class="input-group" [ngClass]="{'with-search': search, 'disabled': btnClickedNow}">
-            <div (click)="triggerModal()" class="">
+            <div (click)="triggerModal()" class="w100">
                 <input type="text" class="form-control" [disabled]="btnClickedNow" [(ngModel)]="xName" name="{{xName}}"
                     placeholder="{{placeholder}}"
                     [ngClass]="{'border-danger': (control!.control!.invalid) && errorTrueNow}" #forminput [id]="name"
