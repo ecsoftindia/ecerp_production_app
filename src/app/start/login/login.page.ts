@@ -289,8 +289,8 @@ export class LoginPage implements OnInit {
 
 
           setTimeout(() => {
-
-            this.router.navigateByUrl('/home/dashboard');
+            
+            this.router.navigateByUrl('/home/select-machine');
           }, 200);
 
           this.btnClicked = false;
@@ -366,7 +366,7 @@ export class LoginPage implements OnInit {
         if (success.Status === true) {
           // Add any additional success logic here if needed
           // Uncomment as necessary:
-          // this.router.navigateByUrl('/home/dashboard');
+          // this.router.navigateByUrl('/home/select-machine');
           // this.general.openAlert(success);
           // this.data.token = val;
           // localStorage.setItem('token', val);
@@ -460,12 +460,12 @@ export class LoginPage implements OnInit {
           await this.storage.set('askLogin', 'false');
         }
 
-        this.router.navigateByUrl('/home/dashboard');
+        this.router.navigateByUrl('/home/select-machine');
 
 
       } else {
         await this.storage.set('askLogin', 'true')
-        this.router.navigateByUrl('/home/dashboard');
+        this.router.navigateByUrl('/home/select-machine');
       }
 
 

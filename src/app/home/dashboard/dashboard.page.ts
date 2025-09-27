@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common/config/api.service';
+import { AppStorageService } from 'src/app/common/services/app-storage/app-storage.service';
 import { DataService } from 'src/app/common/services/data/data.service';
 
 @Component({
@@ -41,12 +42,13 @@ export class DashboardPage implements OnInit {
     { name: 'Scrap', statuscount: '', value: '6' },
   ];
 
-
+  employeename: any = ''
 
   constructor(
     private router: Router,
     public apiService: ApiService,
     public data: DataService,
+    public storage: AppStorageService
   ) { }
 
   ngOnInit() {
@@ -57,6 +59,14 @@ export class DashboardPage implements OnInit {
 
   async init() {
     await this.data.checkToken();
+    await this.storage.get('selected_machine').then((val: any) => {
+      if (val) {
+        console.log(val)
+        this.joborderlistreq.machinecodes = [val.machinecode];
+        this.joborderlistreq.operatorcodes = [val.employeecode];
+        this.employeename = val.employeename;
+      }
+    })
     await this.getProcessList()
     this.getjoborderlist();
   }

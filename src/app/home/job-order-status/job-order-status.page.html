@@ -61,9 +61,10 @@
             </div>
   
             @if (shouldShowSection(process?.qtyinfo, id?.joqty, process)) {
+           
             <div class="status-badge open" 
-             (click)="openJobOrderdetaileds(process[i],process, getStatusAction(id?.joqty,process[i],
-              process[i]?.qtyinfo), getQtyValue(id?.joqty,process[i],process[i]?.qtyinfo))">
+             (click)="openJobOrderdetaileds(process[i],process, getStatusAction(id?.joqty,process,
+              process?.qtyinfo), getQtyValue(id?.joqty,process,process?.qtyinfo))">
 
               {{ getStatusName(id?.joqty, process, process?.qtyinfo) }}
 
@@ -177,7 +178,7 @@
               <div class="card-footer"> 
                 <div>
                   @if(+process?.qtyinfo.inprocess > 0){
-                    <div class="tag inprocess">In-Process
+                    <div class="tag inprocess" (click)="openJobOrderdetailed(processinfo[i],processinfo,'processcompleted',processinfo[i]?.qtyinfo.inprocess)">In-Process
                       <span class="process-bg">
                         {{process?.qtyinfo.inprocess}}
                       </span>
@@ -275,4 +276,4 @@
   </div>
 
 </ion-content>
-<app-footer class="m-2"></app-footer>
+<app-footer></app-footer>

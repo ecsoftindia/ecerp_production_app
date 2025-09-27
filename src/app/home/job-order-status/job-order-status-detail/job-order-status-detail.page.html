@@ -4,55 +4,56 @@
     <img src="assets/arrow-left.png" (click)="goBack()">
     <div class="fs-20-600 ms-4">Job Order Status Detail</div>
   </div>
-  <div class="">
+  @if(from === 'processplan'){
+  <div class="content-sec-card">
 
-    <div class="content-sec-card">
+    @if(dirConvertion){
+    <div class="content-sec-modern">
+      <ion-card>
+        <ion-card-content>
+          <ion-grid>
+            <!-- Row 1: Product ID & Product Name -->
+            <ion-row>
+              <ion-col size="6" class="info-col">
+                <div class="info-label">Product ID</div>
+                <div class="info-value">{{processid?.refn}}</div>
+              </ion-col>
+              <ion-col size="6" class="info-col right-align">
+                <div class="info-label">Product Name</div>
+                <div class="info-value">{{processid?.ina}}</div>
+              </ion-col>
+            </ion-row>
 
-      @if(dirConvertion){
-      <div class="content-sec-modern">
-        <ion-card>
-          <ion-card-content>
-            <ion-grid>
-              <!-- Row 1: Product ID & Product Name -->
-              <ion-row>
-                <ion-col size="6" class="info-col">
-                  <div class="info-label">Product ID</div>
-                  <div class="info-value">{{processid?.refn}}</div>
-                </ion-col>
-                <ion-col size="6" class="info-col right-align">
-                  <div class="info-label">Product Name</div>
-                  <div class="info-value">{{processid?.ina}}</div>
-                </ion-col>
-              </ion-row>
-
-              <!-- Row 2: Job Order No & Date -->
-              <ion-row>
-                <ion-col size="6" class="info-col">
-                  <div class="info-label">Job Order No</div>
-                  <div class="info-value">{{processid?.jono}}</div>
-                </ion-col>
-                <ion-col size="6" class="info-col right-align">
-                  <div class="info-label">Date</div>
-                  <div class="info-value">{{processid?.joed}}</div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card-content>
-        </ion-card>
-      </div>
-      }
-
-
-
-
-
+            <!-- Row 2: Job Order No & Date -->
+            <ion-row>
+              <ion-col size="6" class="info-col">
+                <div class="info-label">Job Order No</div>
+                <div class="info-value">{{processid?.jono}}</div>
+              </ion-col>
+              <ion-col size="6" class="info-col right-align">
+                <div class="info-label">Date</div>
+                <div class="info-value">{{processid?.joed}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
     </div>
+    }
+
+
+
+
 
   </div>
+
+  }
 </ion-header>
 
 <ion-content [fullscreen]="true">
+ 
   <div class="content p-0">
+    @if(from === 'processplan'){
     <ion-card>
       <ion-card-content class="modern-section">
         <div class="process-caption d-flex align-items-center">
@@ -69,20 +70,20 @@
             </div>
           </div>
           @if(from === 'processplan' || from === 'processcompleted' || from === 'inspection'){
-            <div class="ms-auto">
-              <div class="caption-label">Status</div>
-              @if(this.from === 'processplan'){
-                <div class="status-bg"> Open</div>
-              }
-              @if(this.from === 'processcompleted'){
-                <div class="status-bg"> Inprocess</div>
-              }
-              @if(this.from === 'inspection'){
-                <div class="status-bg"> For Inspection</div>
-              }
-             </div>
+          <div class="ms-auto">
+            <div class="caption-label">Status</div>
+            @if(this.from === 'processplan'){
+            <div class="status-bg"> Open</div>
+            }
+            @if(this.from === 'processcompleted'){
+            <div class="status-bg"> Inprocess</div>
+            }
+            @if(this.from === 'inspection'){
+            <div class="status-bg"> For Inspection</div>
+            }
+          </div>
           }
-         
+
         </div>
         <!-- Machines -->
         <div class="field-block">
@@ -96,10 +97,6 @@
               {{ getMachineName(machine) }}
             </span>
           </div>
-
-          <!-- <ion-select *ngIf="isEditing" [(ngModel)]="machines" multiple="true" class="edit-select">
-            <ion-select-option *ngFor="let opt of allMachines" [value]="opt">{{ opt }}</ion-select-option>
-          </ion-select> -->
 
           @if(isEditing){
           <app-select-control [multiple]="true" [items]="machinedata" key="ic" keyname="ina" [(ngModel)]="machinecodes"
@@ -125,9 +122,7 @@
           }
 
 
-          <!-- <ion-select *ngIf="isEditing" [(ngModel)]="operators" multiple="true" class="edit-select">
-            <ion-select-option *ngFor="let opt of allOperators" [value]="opt">{{ opt }}</ion-select-option>
-          </ion-select> -->
+
           @if(isEditing){
           <app-select-control [multiple]="true" [items]="empolyes" key="employeecode" keyname="employeename"
             [(ngModel)]="operatorcodes" name="operatorcodes">
@@ -169,6 +164,102 @@
         </div>
       </ion-card-content>
     </ion-card>
+    }
+    @else if(from === 'processcompleted'){
+
+    <div class="content p-0 detailed-view">
+
+
+      <ion-card class="details-card">
+        <ion-card-header>
+          <div class="d-flex align-items-center">
+            <div class="card-title"> {{ processentry?.pna }}</div>
+            <div class="ms-auto d-flex align-items-center">
+              <ion-badge>Inprocess</ion-badge>
+            </div>
+          </div>
+
+
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" class="info-col">
+                <div class="info-label">Job Order No</div>
+                <div class="info-value">{{processid?.jono}}</div>
+              </ion-col>
+              <ion-col size="6" class="info-col right-align">
+                <div class="info-label">Date</div>
+                <div class="info-value">{{processid?.joed}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" class="info-col">
+                <div class="info-label">Product Name</div>
+                <div class="info-value">{{processid?.ina}}</div>
+              </ion-col>
+              <ion-col size="6" class="info-col right-align">
+                <div class="info-label">Product ID</div>
+                <div class="info-value">{{processid?.refn}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" class="info-col">
+                <div class="info-label">Machine</div>
+                <div class="info-value">
+                  <span *ngFor="let machine of machinecodes" class="chip">
+                    {{ getMachineName(machine) }}
+                  </span>
+                </div>
+              </ion-col>
+              <ion-col size="6" class="info-col right-align">
+                <div class="info-label">Operator</div>
+                <div class="info-value">
+                  <span *ngFor="let op of operatorcodes" class="chip">
+                    {{ getEmployeeName(op) }}
+                  </span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="info-col">
+                <div class="info-label">Qty</div>
+                <ion-badge color="primary" class="qty-badge">{{ totalQty }}</ion-badge>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+
+      <ion-card class="running-section">
+        <ion-card-header>
+          <div class="running-title">Running Section</div>
+          <div class="start-time-label">Start Time: 22 : 00</div>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="running-details">
+            <p>Process is currently running... Monitor progress below.</p>
+
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+
+    <!-- <div class="footer-buttons">
+      <ion-button expand="block" color="warning">
+        <ion-icon name="pause-circle-outline" slot="start"></ion-icon>
+        Pause
+      </ion-button>
+
+      <ion-button expand="block" color="success">
+        <ion-icon name="checkmark-done-circle-outline" slot="start"></ion-icon>
+        Complete
+      </ion-button>
+    </div> -->
+    }
   </div>
 
 
@@ -179,8 +270,16 @@
 </ion-content>
 
 <div class="start-button-container">
+  @if(from === 'processplan'){
   <ion-button (click)="submitfinal()" expand="block" class="start-button">
     Start
   </ion-button>
+  }
+  @else if(from === 'processcompleted'){
+  <ion-button expand="block" color="success" (click)="submitfinal()">
+    <ion-icon name="checkmark-done-circle-outline" slot="start"></ion-icon>
+    Complete
+  </ion-button>
+  }
 </div>
-<app-footer class="m-2"></app-footer>
+<app-footer></app-footer>

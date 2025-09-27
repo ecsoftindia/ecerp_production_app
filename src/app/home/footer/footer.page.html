@@ -1,22 +1,22 @@
-<ion-header [translucent]="true">
+<ion-footer [translucent]="true">
   <ion-toolbar>
     <div class="footer">
       <div>
         <img src="assets/menu.png">
       </div>
-      <div (click)="goToInprogress()">
-        <img src="assets/proposal.png">
+      <div>
+        <img src="assets/proposal.png" (click)="goToInprogress()">
       </div>
       <div>
-        <img src="assets/home.png">
+        <img src="assets/home.png" (click)="dashBoard()">
       </div>
       <div>
         <img src="assets/report.png">
       </div>
-      <div (click)="goToUserProfile()">
-        <img src="assets/user.png">
+      <div>
+        <img src="assets/user.png" (click)="goToUserProfile()">
       </div>
     </div>
   </ion-toolbar>
-  
-</ion-header>
+
+</ion-footer>

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'ecerp_production_app',
+  appId: 'production.ecsoft.com',
+  appName: 'ECERP PRODUCTION',
   webDir: 'www'
 };
 

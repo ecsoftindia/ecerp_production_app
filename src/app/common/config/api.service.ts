@@ -1723,87 +1723,145 @@ export class ApiService {
 	getProcessItemsList(body: any, options?: any): Observable<any> {
 		this.data.serviceStarted();
 		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
 		return this.data.postData('processitemslist', body, options).pipe(
-		  finalize(() => this.data.serviceCompleted()),
-		  catchError((err) => {
-			options.hideErrorMethod ? "" : this.data.errorMethod(err);
-			return throwError(err);
-		  })
-		);
-	  }
-
-	  joborderlistData(body: any, options?: any): Observable<any> {
-		this.data.serviceStarted();
-		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
-		return this.data.postData('reports/joborder/processstatus', body, options).pipe(
-		  finalize(() => this.data.serviceCompleted()),
-		  catchError((err) => {
-			options.hideErrorMethod ? "" : this.data.errorMethod(err);
-			return throwError(err);
-		  })
-		);
-	  }
-
-	  getItems(body: any, options?: any): Observable<any> {
-		this.data.serviceStarted();
-		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
-		return this.data
-		  .postData('items', body, options)
-		  .pipe(
 			finalize(() => this.data.serviceCompleted()),
 			catchError((err) => {
-			  options ? options.hideErrorMethod ? '' : this.data.errorMethod(err) : '';
-			  return throwError(err);
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
 			})
-		  );
-	  }
+		);
+	}
 
-	  getEmployeeList(body: any, options?: any): Observable<any> {
+	joborderlistData(body: any, options?: any): Observable<any> {
 		this.data.serviceStarted();
 		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data.postData('reports/joborder/processstatus', body, options).pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
+		);
+	}
+
+	getItems(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data
+			.postData('items', body, options)
+			.pipe(
+				finalize(() => this.data.serviceCompleted()),
+				catchError((err) => {
+					options ? options.hideErrorMethod ? '' : this.data.errorMethod(err) : '';
+					return throwError(err);
+				})
+			);
+	}
+
+	getEmployeeList(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
 		return this.data.postData('employee/list', body, options).pipe(
-		  finalize(() => this.data.serviceCompleted()),
-		  catchError((err) => {
-			options.hideErrorMethod ? "" : this.data.errorMethod(err);
-			return throwError(err);
-		  })
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
 		);
-	  }
+	}
 
-	  jobProcessItemsConvertToDraftInhouse(body: any, options?: any): Observable<any> {
+	jobProcessItemsConvertToDraftInhouse(body: any, options?: any): Observable<any> {
 		this.data.serviceStarted();
 		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
 		return this.data.postData('jobprocessitems/convert/draftinhouseprocessitems', body, options).pipe(
-		  finalize(() => this.data.serviceCompleted()),
-		  catchError((err) => {
-			options.hideErrorMethod ? "" : this.data.errorMethod(err);
-			return throwError(err);
-		  })
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
 		);
-	  }
+	}
 
-	  confirmProcessPlan(body: any, options?: any): Observable<any> {
+	confirmProcessPlan(body: any, options?: any): Observable<any> {
 		this.data.serviceStarted();
 		options === undefined
-		  ? (options = this.data.defaultOptions)
-		  : (options = this.data.setOptions(options));
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
 		return this.data.postData('processplanentry/confirm', body, options).pipe(
-		  finalize(() => this.data.serviceCompleted()),
-		  catchError((err) => {
-			options.hideErrorMethod ? "" : this.data.errorMethod(err);
-			return throwError(err);
-		  })
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
 		);
-	  }
+	}
+
+
+	jobPendingsForNextInhouseProcess(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data.postData('jobprocesspendings_for_nextinhouseprocess', body, options).pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
+		);
+	}
+
+
+	processPlanPendingList(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data.postData('processplanpendings_for_processcompleteentryinfo', body, options).pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
+		);
+	}
+
+	processPlanPendingItemsconvertToComplete(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data.postData('processitems/convert/draftprocesscompleteentryitems', body, options).pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
+		);
+	}
+
+	confirmPurchase(body: any, options?: any): Observable<any> {
+		this.data.serviceStarted();
+		options === undefined
+			? (options = this.data.defaultOptions)
+			: (options = this.data.setOptions(options));
+		return this.data.postData('purchase/confirm', body, options).pipe(
+			finalize(() => this.data.serviceCompleted()),
+			catchError((err) => {
+				options.hideErrorMethod ? "" : this.data.errorMethod(err);
+				return throwError(err);
+			})
+		);
+	}
 }
 

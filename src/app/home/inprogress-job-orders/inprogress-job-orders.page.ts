@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/common/config/api.service';
 import { DataService } from 'src/app/common/services/data/data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { UrlService } from 'src/app/common/services/url/url.service';
+import { AppStorageService } from 'src/app/common/services/app-storage/app-storage.service';
 
 @Component({
   selector: 'app-inprogress-job-orders',
@@ -66,13 +67,13 @@ export class InprogressJobOrdersPage {
 
   datas: any = []
   isModalOpenforPattern = false;
-  processList:any=[]
-  machinedata:any=[]
-  empolyes:any=[]
-  itemsuser:any=[]
+  processList: any = []
+  machinedata: any = []
+  empolyes: any = []
+  itemsuser: any = []
   itemgrcodes: any = ''
   showProductImg: boolean = false;
-selectedDate: any;
+  selectedDate: any;
 
   constructor(
     private router: Router,
@@ -80,6 +81,7 @@ selectedDate: any;
     public apiService: ApiService,
     public data: DataService,
     public urlService: UrlService,
+    public storage: AppStorageService
   ) { }
 
   ionViewDidEnter() {
@@ -89,6 +91,13 @@ selectedDate: any;
 
   async init() {
     await this.data.checkToken();
+    await this.storage.get('selected_machine').then((val: any) => {
+      if (val) {
+        console.log(val)
+        this.joborderlistreq.machinecodes = [val.machinecode];
+        this.joborderlistreq.operatorcodes = [val.employeecode];
+      }
+    })
     this.getjoborderlist();
     this.getProcessList();
   }
@@ -149,7 +158,7 @@ selectedDate: any;
   getDatamachines() {
     this.apiService.getItems(this.getMachine).subscribe((success) => {
       if (success.Status === true) {
-       
+
         this.machinedata = success.data;
       } else {
         this.machinedata = [];
@@ -210,7 +219,7 @@ selectedDate: any;
       itemgrcodes: []
     }
     // this.searchItem3 = '',
-      this.itemgrcodes = ''
+    this.itemgrcodes = ''
 
   }
 
@@ -225,9 +234,9 @@ selectedDate: any;
     this.joborderlistreq.operatorcodes = this.joborderlistreq.operatorcodes && this.joborderlistreq.operatorcodes.length > 0
       ? this.joborderlistreq.operatorcodes : [];
     this.joborderlistreq.joprocessstatuscodes = this.joborderlistreq.joprocessstatuscodes && this.joborderlistreq.joprocessstatuscodes.length > 0
-     ? this.joborderlistreq.joprocessstatuscodes : [];
+      ? this.joborderlistreq.joprocessstatuscodes : [];
     this.joborderlistreq.usercodes = this.joborderlistreq.usercodes && this.joborderlistreq.usercodes.length > 0
-     ? this.joborderlistreq.usercodes : [];
+      ? this.joborderlistreq.usercodes : [];
 
     this.joborderlistreq.currentpage = '1';
     this.getjoborderlist();

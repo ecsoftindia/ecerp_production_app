@@ -5,120 +5,63 @@
     <img src="assets/arrow-left.png" (click)="goBack()">
     <div class="fs-20-600 ms-4">Job Orders List</div>
     <ion-icon name="filter-outline" class="ms-auto fs-3" (click)="showDraw()"></ion-icon>
- </div>
+  </div>
 </ion-toolbar>
 
 <ion-content [fullscreen]="true">
-   <div class="content">
-      
-      <div class="content-body mt-3">
-          <div class="card card-progress-jo mb-2" (click)="goToJobOrderStatus(val)" *ngFor="let val of datas">
-            <div class="d-flex align-items-center">
-              <div class="fs-14-300">JoNo: {{val.jono}}</div>
-              <div class="fs-14-400 ms-auto">Dated: {{val.joed}}</div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-16-400 pname-elipse">{{val.ina}}</div>
-              <div class=" ms-auto">
-                <div class="fs-14-400">Qty : {{val.joqty}}</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-14-300">Due on: {{val.jodued}}</div>
-              <div class=" ms-auto">
-                <div class="fs-14-400">Process : {{val.processinfo.length}}</div>
-              </div>
-            </div>
+  <div class="content">
 
+    <div class="content-body mt-3">
+      @for (val of datas; track $index) {
+      <div class="card card-progress-jo mb-2" (click)="goToJobOrderStatus(val)">
+        <div class="d-flex align-items-center">
+          <div class="fs-14-300">JoNo: {{val.jono}}</div>
+          <div class="fs-14-400 ms-auto">Dated: {{val.joed}}</div>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <div class="fs-16-400 pname-elipse">{{val.ina}}</div>
+          <div class=" ms-auto">
+            <div class="fs-14-400">Qty : {{val.joqty}}</div>
           </div>
-          
-          <!-- <div class="card card-progress-jo mb-2">
-            <div class="d-flex align-items-center">
-              <div class="fs-14-300">Id: #2563147</div>
-              <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-16-400">Job Order Title</div>
-              <div class=" ms-auto">
-                <div class="violet-btn">Initiated</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-14-300">ETC: 03-09-2025</div>
-              <div class=" ms-auto">
-                
-              </div>
-            </div>
-
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <div class="fs-14-300">Due on: {{val.jodued}}</div>
+          <div class=" ms-auto">
+            <div class="fs-14-400">Process : {{val.processinfo.length}}</div>
           </div>
-
-          <div class="card card-progress-jo mb-2">
-            <div class="d-flex align-items-center">
-              <div class="fs-14-300">Id: #2563147</div>
-              <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-16-400">Job Order Title</div>
-              <div class=" ms-auto">
-                <div class="waiting-btn">Waiting for RM</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-14-300">ETC: 03-09-2025</div>
-              <div class="ms-auto">
-                 <div class="blue-btn">Delay</div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="card card-progress-jo mb-2">
-            <div class="d-flex align-items-center">
-              <div class="fs-14-300">Id: #2563147</div>
-              <div class="fs-16-400 ms-auto">Dated: 02-09-2025</div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-16-400">Job Order Title</div>
-              <div class=" ms-auto">
-                <div class="blue-btn">In-Progress</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center mt-2">
-              <div class="fs-14-300">ETC: 03-09-2025</div>
-              <div class=" ms-auto">
-                <div class="blue-btn">On-time</div>
-              </div>
-            </div>
-
-          </div> -->
-
+        </div>
 
       </div>
-   </div>
+      }
+
+
+    </div>
+  </div>
 </ion-content>
 
 
-<app-footer class="m-2"></app-footer>
+<app-footer></app-footer>
 
-<ion-modal #modal2 [isOpen]="isModalOpenforPattern" [backdropDismiss]="false" [breakpoints]="[0.75]" (ionModalDidDismiss)="isModalOpenforPattern = false">
+<ion-modal #modal2 [isOpen]="isModalOpenforPattern" [backdropDismiss]="false" [breakpoints]="[0.75]"
+  (ionModalDidDismiss)="isModalOpenforPattern = false">
   <ng-template>
     <ion-header [translucent]="true">
-    
-      <div class="header-padcust">
-        <div class="">
-          <ion-icon (click)="backstopage()" class="all-page-arrows" name="arrow-back-outline"></ion-icon>
-        </div>
-        <div class="all-pagetitilecard ms-3">
-          Filters
-        </div>
+      <ion-toolbar>
+        <div class="header-padcust">
+          <div class="">
+            <ion-icon (click)="backstopage()" class="all-page-arrows" name="arrow-back-outline"></ion-icon>
+          </div>
+          <div class="all-pagetitilecard ms-3">
+            Filters
+          </div>
 
-      </div>
-
+        </div>
+      </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <div class="card customzied-prolist">
         <div class="mb-2">
-          
+
           <!-- <div class="mt-2">
             <app-date-control [(ngModel)]="joborderlistreq.fromdate" label="From Date" name="fromdate">
             </app-date-control>
@@ -128,56 +71,54 @@
             </app-date-control>
           </div> -->
 
-<!--         
+          <!--         
             <ion-label>Date</ion-label>
             <input type="date" [(ngModel)]="selectedDate" /> -->
-         
 
-        
-        
+
+
+
           <div class="mt-3">
-            <app-select-control  [multiple]="true"  [items]="processList" key="ic" keyname="ina"
+            <app-select-control [multiple]="true" [items]="processList" key="ic" keyname="ina"
               [(ngModel)]="joborderlistreq.processitemcodes" name="processitemcodes" label="Process">
             </app-select-control>
           </div>
 
 
-          <div class="mt-3">
-            <app-select-control  [multiple]="true"  [items]="machinedata" key="ic" keyname="ina"
+          <!-- <div class="mt-3">
+            <app-select-control [multiple]="true" [items]="machinedata" key="ic" keyname="ina"
               [(ngModel)]="joborderlistreq.machinecodes" name="machinecodes" label="Machines">
             </app-select-control>
-          </div>
+          </div> -->
 
 
-          <div class="mt-3">
-            <app-select-control  [multiple]="true" [items]="empolyes" key="employeecode"
-              keyname="employeename" [(ngModel)]="joborderlistreq.operatorcodes" name="operatorcodes" label="Operators">
+          <!-- <div class="mt-3">
+            <app-select-control [multiple]="true" [items]="empolyes" key="employeecode" keyname="employeename"
+              [(ngModel)]="joborderlistreq.operatorcodes" name="operatorcodes" label="Operators">
             </app-select-control>
-          </div>
+          </div> -->
 
           <div class="mt-3">
-            <app-select-control  [multiple]="true" [items]="joborderstatus" key="value"
-              keyname="name" [(ngModel)]="joborderlistreq.joprocessstatuscodes" name="joprocessstatuscodes"
-              label="Status">
-            </app-select-control>
-          </div>
-
-
-          <div class="mt-3">
-            <app-select-control  [multiple]="true" [items]="itemsuser" key="usercode"
-              keyname="username" [(ngModel)]="joborderlistreq.usercodes" name="usercodes" tabindex="4"
-              label="Prepared by">
+            <app-select-control [multiple]="true" [items]="joborderstatus" key="value" keyname="name"
+              [(ngModel)]="joborderlistreq.joprocessstatuscodes" name="joprocessstatuscodes" label="Status">
             </app-select-control>
           </div>
 
 
-         <!-- <div class="mt-2">
+          <div class="mt-3">
+            <app-select-control [multiple]="true" [items]="itemsuser" key="usercode" keyname="username"
+              [(ngModel)]="joborderlistreq.usercodes" name="usercodes" tabindex="4" label="Prepared by">
+            </app-select-control>
+          </div>
+
+
+          <!-- <div class="mt-2">
             <app-select-category [multiple]="true" [(ngModel)]="itemgrcodes" name="itemgrcodes" tabindex="4"
               label="Product Group">
             </app-select-category>
           </div> -->
 
-        
+
           <div class="h35 mt-3">
             <mat-slide-toggle [checked]="joborderlistreq.onlyprocesspendingjo === 'YES'"
               (change)="joborderlistreq.onlyprocesspendingjo = $event.checked? 'YES':'NO'" labelPosition="after"
@@ -195,24 +136,26 @@
           </div>
         </div>
       </div>
-      
+
     </ion-content>
 
     <ion-footer style="box-shadow: none !important;" class="mt-4 mb-2">
-      <div class="d-flex align-items-center ms-auto mx-3">
-        <div class="customized-btns-up ms-auto me-3">
-          <ion-button  color="primary" (click)="clearAll()"  >
-            Clear
-          </ion-button>
+      <ion-toolbar>
+        <div class="d-flex align-items-center ms-auto mx-3">
+          <div class="customized-btns-up ms-auto me-3">
+            <ion-button color="primary" (click)="clearAll()">
+              Clear
+            </ion-button>
+          </div>
+          <div class="customized-btns-up">
+            <ion-button color="primary" (click)="applyFilter()">
+              Submit
+            </ion-button>
+          </div>
         </div>
-        <div class="customized-btns-up">
-          <ion-button  color="primary" (click)="applyFilter()">
-            Submit
-          </ion-button>
-        </div>
-      </div>
+      </ion-toolbar>
     </ion-footer>
 
-   
+
   </ng-template>
 </ion-modal>

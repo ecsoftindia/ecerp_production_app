@@ -23,4 +23,8 @@ export class FooterPage implements OnInit {
     this.router.navigate(['/home/inprogress-job-orders']);
   }
 
+  dashBoard(){
+    this.router.navigate(['/home/dashboard'])
+  }
+
 }

@@ -1,5 +1,15 @@
+
+ion-toolbar{
+    --background: var(--ion-color-secondary);
+    width: 100%;
+}
 .header{
-    background-color: var(--ion-color-secondary);
-    padding: 10px 20px;
-    height: 69px;
+    // background-color: var(--ion-color-secondary);
+    // padding: 10px 20px;
+    // height: 69px;
+    height: 57px;
+
+    img{
+        width: 150px;
+    }
 }

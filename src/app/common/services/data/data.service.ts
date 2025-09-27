@@ -713,7 +713,7 @@ export class DataService {
             text: 'Go to Login',
             handler: () => {
               this.isLogoutModalOpen = false;
-              this.router.navigateByUrl('sign-in');
+              this.router.navigateByUrl('login-with');
             },
           },
         ],

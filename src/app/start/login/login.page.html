@@ -6,7 +6,7 @@
 
   <div class="content">
     <div class="text-center">
-      <img src="assets/Group 1.png">
+      <img src="assets/erpLogo.png">
     </div>
     <div class="login-container">
       <div class="fs-29-600 text-center">Login</div>
@@ -23,7 +23,7 @@
             <label class="fs-15-500 mb-2">Password</label>
             <!-- <ion-input type="password" [(ngModel)]="loginService.login.loginpin" class="login-input" name="loginpin">
             </ion-input> -->
-            <app-input-control class="" [(ngModel)]="loginService.login.loginpin" name="loginpin"></app-input-control>
+            <app-password-control class="" [(ngModel)]="loginService.login.loginpin" name="loginpin"></app-password-control>
           </div>
         </div>
         }
@@ -69,11 +69,11 @@
       </form>
 
       @if (type === 'pwd' || (type === 'otp' && otpField)) {
-        <div class="login-btn" (click)="CheckSubmit(l)">
-          Authorize Me!
-        </div>
+      <div class="login-btn" (click)="CheckSubmit(l)">
+        Authorize Me!
+      </div>
       }
-    
+
 
       <div class="change-corporateid" (click)="goToCorporate()">Change Corporate Id</div>
       <div class="login-ftr-text text-center">

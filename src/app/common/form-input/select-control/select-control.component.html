@@ -83,8 +83,8 @@
         </div>
     </div>
 
-    <ion-modal [isOpen]="isModalOpenforPattern" (willPresent)="onWillPresent($event)" (ionModalDidDismiss)="isModalOpenforPattern = false"
-        (didPresent)="onDidPresent($event)">
+    <ion-modal [isOpen]="isModalOpenforPattern" (willPresent)="onWillPresent($event)"
+        (ionModalDidDismiss)="isModalOpenforPattern = false" (didPresent)="onDidPresent($event)">
         <ng-template>
             <ion-header>
                 <ion-toolbar>
@@ -173,9 +173,11 @@
                 </ng-container>
             </ion-content>
             <ion-footer>
-                <div class="ion-padding">
-                    <ion-button (click)="dismiss()" expand="block" color="secondary">Submit</ion-button>
-                </div>
+                <ion-toolbar>
+                    <div class="ion-padding">
+                        <ion-button (click)="dismiss()" expand="block" color="secondary">Submit</ion-button>
+                    </div>
+                </ion-toolbar>
             </ion-footer>
         </ng-template>
     </ion-modal>

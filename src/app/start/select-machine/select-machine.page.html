@@ -1,32 +1,37 @@
 <ion-header [translucent]="true">
-   
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="content">
     <div class="text-center">
-       <img src="assets/Group 1.png">
+      <img src="assets/erpLogo.png">
     </div>
     <div class="login-container">
-        <div class="fs-29-600 text-center">Select Your Machine</div>
-        <div class="input-grp">
-          <div class="d-flex flex-column">
-            <label class="fs-15-500 mb-1">Machine id</label>
-            <input type="text" class="login-input">
-          </div>
-         
+      <!-- <div class="fs-29-600 text-center">Select Your Machine</div> -->
+      <div class="input-grp">
+        <div class="d-flex flex-column">
+          <!-- <label class="fs-15-500 mb-1">Machine id</label>
+            <input type="text" class="login-input"> -->
+          <app-select-control [(ngModel)]="employeecode" [items]="employees" key="employeecode" keyname="employeename" label="Select Operator">
+          </app-select-control>
+
+          <app-select-control class="mt-4" [(ngModel)]="machinecode" [items]="machinedata" key="ic" keyname="ina" label="Select Your Machine">
+          </app-select-control>
         </div>
-        
-        <div class="login-btn" (click)="goToDashboard()">
-            Let me in!
-        </div>
-        <div class="text-center fs-15-500 my-3">or</div>
+
+      </div>
+
+      <div class="login-btn" (click)="goToDashboard()">
+        Let me in!
+      </div>
+      <!-- <div class="text-center fs-15-500 my-3">or</div>
         <div class="req-btn">
             Request for access
-        </div>
+        </div> 
         <div class="login-ftr-text text-center" (click)="goBack()">
           Can’t Remember my machine?
-        </div>
-    </div> 
-</div>
+        </div>-->
+    </div>
+  </div>
 </ion-content>
