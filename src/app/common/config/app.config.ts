@@ -1,9 +1,10 @@
 import { environment } from 'src/environments/environment';
 
 export class AppConfig {
-  public static basePath:string = environment.basePath;
-  public static baseAppPath:string = environment.baseAppPath;
-  public static encrypt:boolean  = environment.encrypt;
+  public static basePath: string = environment.basePath;
+  public static printUrl: string = environment.printUrl;
+  public static baseAppPath: string = environment.baseAppPath;
+  public static encrypt: boolean = environment.encrypt;
   public static corporateId: string = environment.corporateId;
   public static resendTime = 2;
   public static roleEnabled = false;

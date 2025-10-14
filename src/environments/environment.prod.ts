@@ -1,7 +1,9 @@
 export const environment = {
   production: false,
   corporateId: '',
-  basePath: 'https://ecbill.net/ecerpv2_alpha_api/api/',
+  // basePath: 'https://ecbill.net/ecerpv2_alpha_api/api/',
+  basePath: "https://ecbill.net/ecerp_core_alpha_api/api/",
+  printUrl: "https://ecbill.net/ecerp_crystal_report_live_api/api/",
   imagePath: '/',
   orgLogoPath: '/',
   baseAppPath: '/',

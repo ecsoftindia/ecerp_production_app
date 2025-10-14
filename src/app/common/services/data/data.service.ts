@@ -580,13 +580,13 @@ export class DataService {
       //   options && options.hideFullSpinner ? '' : 'true'
       // );
     }
-    return this.http.post(AppConfig.basePath + path, body, {
+    return this.http.post(AppConfig.printUrl + path, body, {
       headers: headers,
       responseType: 'blob',
     });
   }
 
-  
+
   getPDFData(path: any, options?: any) {
     let headers = new HttpHeaders();
     if (options && options.hideJwt) {
@@ -982,7 +982,7 @@ export class DataService {
     const headers = new HttpHeaders(
       { Authorization: 'Bearer ' + this.token }
     );
-    return this.http.post(AppConfig.basePath + 'pdf', credentials,
+    return this.http.post(AppConfig.printUrl + 'pdf', credentials,
       { headers, responseType: 'blob' })
       .subscribe(res => {
         const resp = new Blob([res], { type: 'application/pdf' });
@@ -1058,7 +1058,7 @@ export class DataService {
             () => {
               resolve(true);
             },
-            (error:any) => { resolve(false); }
+            (error: any) => { resolve(false); }
           );
         }
         else { resolve(false); }
@@ -1089,7 +1089,7 @@ export class DataService {
       const headers = new HttpHeaders(
         { 'Authorization': 'Bearer ' + this.token }
       );
-      this.http.get(AppConfig.basePath + path, { headers: headers, responseType: 'blob' })
+      this.http.get(AppConfig.printUrl + path, { headers: headers, responseType: 'blob' })
         .subscribe(res => {
           resolve(res);
           const blob = new Blob([res], { type: 'application/pdf' });

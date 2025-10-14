@@ -286,7 +286,7 @@ export class JobOrderStatusDetailPage {
       this.searchData.joentryid = this.processid?.joeid;
       this.searchData.itemcodes[0] = this.processid?.ic;
       if (this.dirConvertion) {
-        this.searchData.nextprocesscodes[0] = this.processdetail?.pco
+        this.searchData.nextprocesscodes[0] = this.processentry?.pco
       }
       this.apiService.jobPendingsForNextInhouseProcess(this.searchData).subscribe({
         next: (jobRes: any) => {
@@ -453,7 +453,7 @@ export class JobOrderStatusDetailPage {
       if (this.dirConvertion) {
         this.searchData.nextprocesscodes = []
         this.searchData.processcodes = []
-        this.searchData.processcodes[0] = this.processdetail?.pco
+        this.searchData.processcodes[0] = this.processentry?.pco
       }
       this.apiService.processPlanPendingList(this.searchData).subscribe(
         {
