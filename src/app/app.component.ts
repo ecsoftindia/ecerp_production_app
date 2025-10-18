@@ -33,7 +33,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platform.ready().then(async() => {
+    this.platform.ready().then(async () => {
       ScreenOrientation.lock({ orientation: 'portrait' });
       Keyboard.setScroll({ isDisabled: true });
       this.keyboardShowListener = Keyboard.addListener('keyboardWillShow', () => {
@@ -90,6 +90,11 @@ export class AppComponent {
         }
       }
 
+      const value = getComputedStyle(document.documentElement)
+        .getPropertyValue('--ion-safe-area-bottom');
+
+      document.documentElement.style.setProperty('--ion-safe-area-bottom', value);
+
       SplashScreen.hide();
       setTimeout(() => {
         this.loginService.init();
@@ -99,7 +104,7 @@ export class AppComponent {
     });
   }
 
- 
+
 
   ngOnDestroy() {
     if (this.keyboardShowListener) {
