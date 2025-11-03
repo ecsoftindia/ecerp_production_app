@@ -453,7 +453,7 @@ export class JobOrderStatusDetailPage {
       if (this.dirConvertion) {
         this.searchData.nextprocesscodes = []
         this.searchData.processcodes = []
-        this.searchData.processcodes[0] = this.processentry?.pco
+        this.searchData.processcodes[0] = this.processdetail?.pco
       }
       this.apiService.processPlanPendingList(this.searchData).subscribe(
         {
